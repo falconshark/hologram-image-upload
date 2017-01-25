@@ -10,7 +10,11 @@ module.exports = {
             {
                 "test": /\.js$/,
                 "loader": "babel"
-            }
+            },
+            {
+                "test": /\.css$/,
+                "loader": "css-loader"
+            },
         ]
     }
 }
