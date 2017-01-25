@@ -1662,10 +1662,6 @@ ini@^1.3.4, ini@~1.3.0:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
 
-install:
-  version "0.8.4"
-  resolved "https://registry.yarnpkg.com/install/-/install-0.8.4.tgz#a638ef22463d840eb7e0e993a4b5d977e9f571c0"
-
 interpret@^0.6.4:
   version "0.6.6"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-0.6.6.tgz#fecd7a18e7ce5ca6abfb953e1f86213a49f1625b"
@@ -1832,10 +1828,6 @@ jodid25519@^1.0.0:
   resolved "https://registry.yarnpkg.com/jodid25519/-/jodid25519-1.0.2.tgz#06d4912255093419477d425633606e0e90782967"
   dependencies:
     jsbn "~0.1.0"
-
-jquery-modal:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/jquery-modal/-/jquery-modal-0.8.0.tgz#d88f46aeb4a9cbfbce355d0b8a4342bdb9e8a4f5"
 
 js-tokens@^2.0.0:
   version "2.0.0"
@@ -2493,6 +2485,10 @@ react-dropzone@3.7.3:
   resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-3.7.3.tgz#7852b6652a43afc7fa072021f3369123ea4a61e0"
   dependencies:
     attr-accept "^1.0.3"
+
+react-image-crop:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-image-crop/-/react-image-crop-1.0.4.tgz#9100e3153de69a03ea0722a1d18865f12c2fc779"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"

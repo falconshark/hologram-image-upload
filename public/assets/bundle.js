@@ -21505,8 +21505,15 @@
 	  },
 
 	  onDrop: function onDrop(acceptedFiles) {
+	    var images = [];
+	    acceptedFiles.forEach(function (file) {
+	      file['id'] = Math.random().toString(36).substring(5);
+	      window.sessionStorage.setItem(file['name'], file);
+	      images.push(file);
+	    });
+
 	    this.setState({
-	      files: acceptedFiles
+	      files: images
 	    });
 	  },
 
@@ -21552,42 +21559,10 @@
 	          this.state.files.map(function (file) {
 	            return _react2.default.createElement(
 	              'a',
-	              { href: '#' + file.name },
+	              { href: '#', 'data-toggle': 'modal', 'data-target': '#' + file.id },
 	              ' ',
 	              _react2.default.createElement('img', { className: 'dropzone-preview', src: file.preview }),
 	              ' '
-	            );
-	          }),
-	          this.state.files.map(function (file) {
-	            return _react2.default.createElement(
-	              'div',
-	              { id: file.name, className: 'modal fade', role: 'dialog' },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'modal-dialog' },
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'modal-content' },
-	                  _react2.default.createElement(
-	                    'div',
-	                    { className: 'modal-header' },
-	                    _react2.default.createElement(
-	                      'button',
-	                      { type: 'button', className: 'close', 'data-dismiss': 'modal' },
-	                      '\xD7'
-	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    'div',
-	                    { className: 'modal-body' },
-	                    _react2.default.createElement(
-	                      'p',
-	                      null,
-	                      'Some text in the modal.'
-	                    )
-	                  )
-	                )
-	              )
 	            );
 	          })
 	        )

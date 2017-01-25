@@ -11,11 +11,13 @@ var DropzoneCom = React.createClass({
   onDrop: function (acceptedFiles) {
     var images = [];
     acceptedFiles.forEach(function(file){
+      file['id'] = Math.random().toString(36).substring(5);
       window.sessionStorage.setItem(file['name'], file);
+      images.push(file);
     });
 
     this.setState({
-      files: acceptedFiles
+      files: images
     });
   },
 
@@ -35,20 +37,7 @@ var DropzoneCom = React.createClass({
         {this.state.files.length > 0 ? <div>
           <h2>Uploading {this.state.files.length} files...</h2>
           <div>
-            {this.state.files.map((file) => <a href={'#' + file.name}> <img className="dropzone-preview" src={file.preview} /> </a>)}
-              {this.state.files.map((file) => <div id={file.name} className="modal fade" role="dialog">
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <button type="button" className="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  <div className="modal-body">
-                    <p>Some text in the modal.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-             )}
+            {this.state.files.map((file) => <a href="#" data-toggle="modal" data-target={'#' + file.id}> <img className="dropzone-preview" src={file.preview} /> </a>)}
           </div>
         </div> : null}
       </div>
