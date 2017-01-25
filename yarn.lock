@@ -877,10 +877,6 @@ braces@^1.8.2:
     preserve "^0.2.0"
     repeat-element "^1.1.2"
 
-browser-filesaver:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/browser-filesaver/-/browser-filesaver-1.1.1.tgz#1c351b2f576f5b00f1d29d4421c4c0428eee5fa1"
-
 browserify-zlib@~0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/browserify-zlib/-/browserify-zlib-0.1.4.tgz#bb35f8a519f600e0fa6b8485241c979d0141fb2d"

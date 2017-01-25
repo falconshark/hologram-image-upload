@@ -3,6 +3,7 @@ import Dropzone from 'react-dropzone';
 
 var DropzoneCom = React.createClass({
   getInitialState: function () {
+    window.sessionStorage.removeItem('Uploaded Images');
        return {
          files: []
        };
@@ -11,6 +12,12 @@ var DropzoneCom = React.createClass({
    onDrop: function (acceptedFiles) {
      this.setState({
        files: acceptedFiles
+     });
+
+     var images = [];
+
+     acceptedFiles.foreach(function(file){
+       window.sessionStorage.setItem(file['name'], file);
      });
    },
 
@@ -29,7 +36,9 @@ var DropzoneCom = React.createClass({
                </button>
                {this.state.files.length > 0 ? <div>
                <h2>Uploading {this.state.files.length} files...</h2>
-               <div>{this.state.files.map((file) => <img src={file.preview} /> )}</div>
+               <div>
+                 {this.state.files.map((file) => <img className="dropzone-preview" src={file.preview} />)}
+               </div>
                </div> : null}
            </div>
        );

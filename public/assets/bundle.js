@@ -21482,7 +21482,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -21496,66 +21496,73 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var DropzoneCom = _react2.default.createClass({
-	    displayName: 'DropzoneCom',
+	  displayName: 'DropzoneCom',
 
-	    getInitialState: function getInitialState() {
-	        return {
-	            files: []
-	        };
-	    },
+	  getInitialState: function getInitialState() {
+	    window.sessionStorage.removeItem('Uploaded Images');
+	    return {
+	      files: []
+	    };
+	  },
 
-	    onDrop: function onDrop(acceptedFiles) {
-	        this.setState({
-	            files: acceptedFiles
-	        });
-	    },
+	  onDrop: function onDrop(acceptedFiles) {
+	    this.setState({
+	      files: acceptedFiles
+	    });
 
-	    onOpenClick: function onOpenClick() {
-	        this.dropzone.open();
-	    },
+	    var images = [];
 
-	    render: function render() {
-	        var _this = this;
+	    acceptedFiles.foreach(function (file) {
+	      window.sessionStorage.setItem(file['name'], file);
+	    });
+	  },
 
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	                _reactDropzone2.default,
-	                { ref: function ref(node) {
-	                        _this.dropzone = node;
-	                    }, onDrop: this.onDrop },
-	                _react2.default.createElement(
-	                    'div',
-	                    null,
-	                    'Try dropping some files here, or click to select files to upload.'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'button',
-	                { type: 'button', onClick: this.onOpenClick },
-	                'Open Dropzone'
-	            ),
-	            this.state.files.length > 0 ? _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h2',
-	                    null,
-	                    'Uploading ',
-	                    this.state.files.length,
-	                    ' files...'
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    null,
-	                    this.state.files.map(function (file) {
-	                        return _react2.default.createElement('img', { src: file.preview });
-	                    })
-	                )
-	            ) : null
-	        );
-	    }
+	  onOpenClick: function onOpenClick() {
+	    this.dropzone.open();
+	  },
+
+	  render: function render() {
+	    var _this = this;
+
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(
+	        _reactDropzone2.default,
+	        { ref: function ref(node) {
+	            _this.dropzone = node;
+	          }, onDrop: this.onDrop },
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          'Try dropping some files here, or click to select files to upload.'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'button',
+	        { type: 'button', onClick: this.onOpenClick },
+	        'Open Dropzone'
+	      ),
+	      this.state.files.length > 0 ? _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Uploading ',
+	          this.state.files.length,
+	          ' files...'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          this.state.files.map(function (file) {
+	            return _react2.default.createElement('img', { className: 'dropzone-preview', src: file.preview });
+	          })
+	        )
+	      ) : null
+	    );
+	  }
 	});
 
 	exports.default = DropzoneCom;
