@@ -21499,7 +21499,6 @@
 	  displayName: 'DropzoneCom',
 
 	  getInitialState: function getInitialState() {
-	    window.sessionStorage.removeItem('Uploaded Images');
 	    return {
 	      files: []
 	    };
@@ -21508,12 +21507,6 @@
 	  onDrop: function onDrop(acceptedFiles) {
 	    this.setState({
 	      files: acceptedFiles
-	    });
-
-	    var images = [];
-
-	    acceptedFiles.foreach(function (file) {
-	      window.sessionStorage.setItem(file['name'], file);
 	    });
 	  },
 
@@ -21557,7 +21550,45 @@
 	          'div',
 	          null,
 	          this.state.files.map(function (file) {
-	            return _react2.default.createElement('img', { className: 'dropzone-preview', src: file.preview });
+	            return _react2.default.createElement(
+	              'a',
+	              { href: '#' + file.name },
+	              ' ',
+	              _react2.default.createElement('img', { className: 'dropzone-preview', src: file.preview }),
+	              ' '
+	            );
+	          }),
+	          this.state.files.map(function (file) {
+	            return _react2.default.createElement(
+	              'div',
+	              { id: file.name, className: 'modal fade', role: 'dialog' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'modal-dialog' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'modal-content' },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'modal-header' },
+	                    _react2.default.createElement(
+	                      'button',
+	                      { type: 'button', className: 'close', 'data-dismiss': 'modal' },
+	                      '\xD7'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'modal-body' },
+	                    _react2.default.createElement(
+	                      'p',
+	                      null,
+	                      'Some text in the modal.'
+	                    )
+	                  )
+	                )
+	              )
+	            );
 	          })
 	        )
 	      ) : null
