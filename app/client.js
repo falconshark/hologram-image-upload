@@ -1,6 +1,6 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import DropzoneCom from "./components/Dropzone";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import DropzoneCom from './components/Dropzone';
 
 var dropzone = document.getElementById('dropzone');
 

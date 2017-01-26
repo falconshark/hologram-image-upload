@@ -1,7 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import ReactCrop from 'react-image-crop';
-import 'react-image-crop/dist/ReactCrop.css';
+import CropperCom from "./Cropper";
 
 var DropzoneCom = React.createClass({
   getInitialState: function () {
@@ -39,20 +38,10 @@ var DropzoneCom = React.createClass({
         {this.state.files.length > 0 ? <div>
           <h2>Uploading {this.state.files.length} files...</h2>
           <div>
-            {this.state.files.map((file) => <a href="#" data-toggle="modal" data-target={'#' + file.id}> <img className="dropzone-preview" src={file.preview} /> </a>)}
-            {this.state.files.map((file) => <div id={file.id} className="modal fade" role="dialog">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-body">
-                    <ReactCrop src={file.preview} />
-                </div>
-              </div>
-            </div>
+            {this.state.files.map((file) => <a href="#" data-toggle="modal" data-target={'#' + file.id}> <img className="dropzone-preview" src={file.preview} /></a>)}
           </div>
-        )}
+        </div> : null}
       </div>
-    </div> : null}
-  </div>
 );
 }
 });
