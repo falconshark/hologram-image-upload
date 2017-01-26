@@ -39,9 +39,20 @@ var DropzoneCom = React.createClass({
           <h2>Uploading {this.state.files.length} files...</h2>
           <div>
             {this.state.files.map((file) => <a href="#" data-toggle="modal" data-target={'#' + file.id}> <img className="dropzone-preview" src={file.preview} /></a>)}
+            {this.state.files.map((file) => <div id={file.id} className="modal fade" role="dialog">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-body">
+                  <CropperCom src={file.preview} />
+                  <button>Save</button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div> : null}
+        )}
       </div>
+    </div> : null}
+  </div>
 );
 }
 });

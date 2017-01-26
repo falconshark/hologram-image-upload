@@ -1,28 +1,21 @@
 import React from 'react';
-import ReactImageCrop from 'react-image-crop-component';
+import ReactCrop from 'react-image-crop';
 
 var CropperCom = React.createClass({
     render(){
         return (<div>
-            <ReactImageCrop
+            <ReactCrop
               setWidth={300}
               setHeight={300}
               square={true}
-              onCrop={this.onCropped}
-              onCropData={this.onCroppedData}
-              onChange={this.onChanged}
+              onComplete={this.onComplete}
               src={this.props.src}
               />
         </div>);
     },
-    onChanged: function (e) {
-        console.log(e);
-    },
-    onCropped: function (e) {
-        console.log(e);
-    },
-    onCroppedData: function (e) {
-        console.log(e);
+    onComplete: function (crop, pixelCrop) {
+        console.log('Crop: ', crop);
+        console.log('pixelCrop: ', pixelCrop);
     }
 });
 
