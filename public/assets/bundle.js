@@ -21524,13 +21524,18 @@
 	  onDrop: function onDrop(acceptedFiles) {
 	    var images = [];
 	    acceptedFiles.forEach(function (file) {
-	      file['id'] = Math.random().toString(36).substring(5);
-	      window.sessionStorage.setItem(file['id'], file);
+	      file['key'] = Math.random().toString(36).substring(5);
 	      images.push(file);
 	    });
 
 	    this.setState({
 	      files: images
+	    });
+	  },
+
+	  onUpdate: function onUpdate(files) {
+	    this.setState({
+	      files: [files]
 	    });
 	  },
 
@@ -21576,7 +21581,7 @@
 	          this.state.files.map(function (file) {
 	            return _react2.default.createElement(
 	              'a',
-	              { href: '#', 'data-toggle': 'modal', 'data-target': '#' + file.id },
+	              { href: '#', 'data-toggle': 'modal', 'data-target': '#' + file.key },
 	              ' ',
 	              _react2.default.createElement('img', { className: 'dropzone-preview', src: file.preview })
 	            );
@@ -21584,7 +21589,7 @@
 	          this.state.files.map(function (file) {
 	            return _react2.default.createElement(
 	              'div',
-	              { id: file.id, className: 'modal fade', role: 'dialog' },
+	              { id: file.key, className: 'modal fade', role: 'dialog' },
 	              _react2.default.createElement(
 	                'div',
 	                { className: 'modal-dialog' },
@@ -21594,12 +21599,7 @@
 	                  _react2.default.createElement(
 	                    'div',
 	                    { className: 'modal-body' },
-	                    _react2.default.createElement(_Cropper2.default, { src: file.preview }),
-	                    _react2.default.createElement(
-	                      'button',
-	                      null,
-	                      'Save'
-	                    )
+	                    _react2.default.createElement(_Cropper2.default, { src: file.preview, fileKey: file.key, onUpdate: _this.onUpdate })
 	                  )
 	                )
 	              )
@@ -22312,7 +22312,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -22326,25 +22326,66 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var CropperCom = _react2.default.createClass({
-	    displayName: 'CropperCom',
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(_reactImageCrop2.default, {
-	                setWidth: 300,
-	                setHeight: 300,
-	                square: true,
-	                onComplete: this.onComplete,
-	                src: this.props.src
-	            })
-	        );
-	    },
+	  displayName: 'CropperCom',
 
-	    onComplete: function onComplete(crop, pixelCrop) {
-	        console.log('Crop: ', crop);
-	        console.log('pixelCrop: ', pixelCrop);
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      originImage: {}
+	    };
+	  },
+
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_reactImageCrop2.default, {
+	        onImageLoaded: this.onImageLoaded,
+	        onComplete: this.onComplete,
+	        src: this.props.src
+	      }),
+	      _react2.default.createElement(
+	        'button',
+	        { onClick: this.crop, 'data-dismiss': 'modal' },
+	        'Save'
+	      )
+	    );
+	  },
+
+
+	  crop: function crop() {
+	    var file = { key: this.state.key, preview: this.state.croppedImage };
+	    this.props.onUpdate(file);
+	  },
+
+	  onImageLoaded: function onImageLoaded(crop, image, pixelCrop) {
+	    this.setState({ originImage: image });
+	  },
+
+	  onComplete: function onComplete(crop, pixelCrop) {
+	    var originImage = this.state.originImage;
+	    var imageWidth = originImage.naturalWidth;
+	    var imageHeight = originImage.naturalHeight;
+
+	    if (crop.width || crop.height) {
+	      var cropX = crop.x / 100 * imageWidth;
+	      var cropY = crop.y / 100 * imageHeight;
+
+	      var cropWidth = crop.width / 100 * imageWidth;
+	      var cropHeight = crop.height / 100 * imageHeight;
+
+	      var canvas = document.createElement('canvas');
+	      canvas.width = cropWidth;
+	      canvas.height = cropHeight;
+	      var ctx = canvas.getContext('2d');
+
+	      ctx.drawImage(originImage, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+
+	      var croppedImage = canvas.toDataURL('image/jpeg');
+
+	      this.setState({ key: this.props.fileKey, croppedImage: croppedImage });
 	    }
+	  }
 	});
 
 	exports.default = CropperCom;

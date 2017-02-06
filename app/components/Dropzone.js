@@ -12,13 +12,18 @@ var DropzoneCom = React.createClass({
   onDrop: function (acceptedFiles) {
     var images = [];
     acceptedFiles.forEach(function(file){
-      file['id'] = Math.random().toString(36).substring(5);
-      window.sessionStorage.setItem(file['id'], file);
+      file['key'] = Math.random().toString(36).substring(5);
       images.push(file);
     });
 
     this.setState({
       files: images
+    });
+  },
+
+  onUpdate: function(files){
+    this.setState({
+      files: [files]
     });
   },
 
@@ -38,13 +43,12 @@ var DropzoneCom = React.createClass({
         {this.state.files.length > 0 ? <div>
           <h2>Uploading {this.state.files.length} files...</h2>
           <div>
-            {this.state.files.map((file) => <a href="#" data-toggle="modal" data-target={'#' + file.id}> <img className="dropzone-preview" src={file.preview} /></a>)}
-            {this.state.files.map((file) => <div id={file.id} className="modal fade" role="dialog">
+            {this.state.files.map((file) => <a href="#" data-toggle="modal" data-target={'#' + file.key}> <img className="dropzone-preview" src={file.preview} /></a>)}
+            {this.state.files.map((file) => <div id={file.key} className="modal fade" role="dialog">
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-body">
-                  <CropperCom src={file.preview} />
-                  <button>Save</button>
+                  <CropperCom src={file.preview} fileKey={file.key} onUpdate={this.onUpdate}/>
                 </div>
               </div>
             </div>

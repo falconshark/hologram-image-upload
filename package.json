@@ -20,7 +20,6 @@
     "react": "15.3.2",
     "react-dom": "15.3.2",
     "react-dropzone": "3.7.3",
-    "react-image-crop": "^1.0.4",
-    "react-image-crop-component": "^0.1.0"
+    "react-image-crop": "^1.0.4"
   }
 }
