@@ -21522,20 +21522,26 @@
 	  },
 
 	  onDrop: function onDrop(acceptedFiles) {
-	    var images = [];
+	    var files = [];
 	    acceptedFiles.forEach(function (file) {
 	      file['key'] = Math.random().toString(36).substring(5);
-	      images.push(file);
+	      files.push(file);
 	    });
 
 	    this.setState({
-	      files: images
+	      files: files
 	    });
 	  },
 
-	  onUpdate: function onUpdate(files) {
+	  onUpdate: function onUpdate(croppedImage) {
+	    var files = this.state.files;
+	    var fileIndex = files.findIndex(function (file) {
+	      return file.key === croppedImage.key;
+	    });
+	    files[fileIndex].preview = croppedImage.preview;
+
 	    this.setState({
-	      files: [files]
+	      files: files
 	    });
 	  },
 
@@ -22354,8 +22360,8 @@
 
 
 	  crop: function crop() {
-	    var file = { key: this.state.key, preview: this.state.croppedImage };
-	    this.props.onUpdate(file);
+	    var croppedImage = { key: this.state.key, preview: this.state.croppedImage };
+	    this.props.onUpdate(croppedImage);
 	  },
 
 	  onImageLoaded: function onImageLoaded(crop, image, pixelCrop) {

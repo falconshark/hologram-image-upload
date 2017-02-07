@@ -10,20 +10,24 @@ var DropzoneCom = React.createClass({
   },
 
   onDrop: function (acceptedFiles) {
-    var images = [];
+    var files = [];
     acceptedFiles.forEach(function(file){
       file['key'] = Math.random().toString(36).substring(5);
-      images.push(file);
+      files.push(file);
     });
 
     this.setState({
-      files: images
+      files: files
     });
   },
 
-  onUpdate: function(files){
+  onUpdate: function(croppedImage){
+    var files = this.state.files;
+    var fileIndex = files.findIndex((file => file.key === croppedImage.key));
+    files[fileIndex].preview = croppedImage.preview;
+
     this.setState({
-      files: [files]
+      files: files
     });
   },
 
