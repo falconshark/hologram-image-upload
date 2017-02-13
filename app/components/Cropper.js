@@ -21,8 +21,8 @@ var CropperCom = React.createClass({
   },
 
   crop: function(){
-    var croppedImage = {key: this.state.key, preview: this.state.croppedImage};
-    this.props.onUpdate(croppedImage);
+    this.props.file['preview'] = this.state.croppedImage;
+    this.props.onUpdate(this.props.file);
   },
 
   onImageLoaded: function(crop, image, pixelCrop){
@@ -50,7 +50,7 @@ var CropperCom = React.createClass({
 
       var croppedImage = canvas.toDataURL('image/jpeg');
 
-      this.setState({key: this.props.fileKey, croppedImage: croppedImage});
+      this.setState({croppedImage: croppedImage});
     }
   }
 });

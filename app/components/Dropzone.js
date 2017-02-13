@@ -1,12 +1,17 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import CropperCom from "./Cropper";
+import request from 'superagent'
 
 var DropzoneCom = React.createClass({
   getInitialState: function () {
     return {
       files: []
     };
+  },
+
+  upload: function (){
+    var files = this.state.files;
   },
 
   onDrop: function (acceptedFiles) {
@@ -21,10 +26,10 @@ var DropzoneCom = React.createClass({
     });
   },
 
-  onUpdate: function(croppedImage){
+  onUpdate: function(updateFile){
     var files = this.state.files;
-    var fileIndex = files.findIndex((file => file.key === croppedImage.key));
-    files[fileIndex].preview = croppedImage.preview;
+    var fileIndex = files.findIndex((file => file.key === updateFile.key));
+    files[fileIndex] = updateFile;
 
     this.setState({
       files: files
@@ -52,13 +57,14 @@ var DropzoneCom = React.createClass({
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-body">
-                  <CropperCom src={file.preview} fileKey={file.key} onUpdate={this.onUpdate}/>
+                  <CropperCom src={file.preview} file={file} onUpdate={this.onUpdate}/>
                 </div>
               </div>
             </div>
           </div>
         )}
       </div>
+      <button type="button" className="btn btn-default" onClick={this.upload}>Upload</button>
     </div> : null}
   </div>
 );
