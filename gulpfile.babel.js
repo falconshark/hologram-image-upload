@@ -3,7 +3,7 @@ var gutil = require('gulp-util');
 var webpack = require('webpack');
 var webpackCfg = require('./webpack.config.js');
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['build']);
 
 gulp.task('watch', function () {
   gulp.watch('app/**/*.js', ['build']);

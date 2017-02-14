@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactCrop from 'react-image-crop';
 
-var CropperCom = React.createClass({
-
-  getInitialState: function () {
-    return {
+class CropperCom extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onImageLoaded = this.onImageLoaded.bind(this);
+    this.onComplete = this.onComplete.bind(this);
+    this.crop = this.crop.bind(this);
+    this.state = {
       originImage: {}
     };
-  },
+  }
 
   render(){
     return (<div>
@@ -18,18 +21,21 @@ var CropperCom = React.createClass({
         />
       <button onClick={this.crop} data-dismiss= "modal">Save</button>
     </div>);
-  },
+  }
 
-  crop: function(){
-    this.props.file['preview'] = this.state.croppedImage;
+  crop(){
+    if(this.state.croppedImage){
+        this.props.file['preview'] = this.state.croppedImage;
+    }
     this.props.onUpdate(this.props.file);
-  },
+  }
 
-  onImageLoaded: function(crop, image, pixelCrop){
+  onImageLoaded(crop, image, pixelCrop){
     this.setState({originImage: image});
-  },
+  }
 
-  onComplete: function (crop, pixelCrop) {
+  onComplete(crop, pixelCrop) {
+    var component = this;
     var originImage = this.state.originImage;
     var imageWidth =  originImage.naturalWidth;
     var imageHeight = originImage.naturalHeight;
@@ -48,11 +54,12 @@ var CropperCom = React.createClass({
 
       ctx.drawImage(originImage, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
 
-      var croppedImage = canvas.toDataURL('image/jpeg');
-
-      this.setState({croppedImage: croppedImage});
+      canvas.toBlob(function(blob){
+          var croppedImage = URL.createObjectURL(blob);
+          component.setState({croppedImage: croppedImage});
+      }, 'image/jpeg');
     }
   }
-});
+}
 
 export default CropperCom

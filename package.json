@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "./node_modules/.bin/gulp"
+    "build": "./node_modules/.bin/gulp",
+    "watch": "./node_modules/.bin/gulp watch"
   },
   "devDependencies": {
     "babel": "6.5.2",
