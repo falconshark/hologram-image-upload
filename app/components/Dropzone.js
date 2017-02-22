@@ -94,32 +94,32 @@ class DropzoneCom extends React.Component {
   render() {
     return (
       <div>
-      <Dropzone ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
-      <div>Try dropping some files here, or click to select files to upload.</div>
-      </Dropzone>
-      <button type="button" onClick={this.onOpenClick.bind(this)}>
-      Open Dropzone
-      </button>
-      {this.state.files.length > 0 ? <div>
-        <h2>Uploading {this.state.files.length} files...</h2>
-        <div>
-        {this.state.files.map((file) => <a href="#" data-toggle="modal" key={file.key} data-target={'#' + file.key}> <img className="dropzone-preview" key={file.key} src={file.preview} /></a>)}
-        {this.state.files.map((file) => <div key={file.key} id={file.key} className="modal fade" role="dialog">
-        <div className="modal-dialog">
-        <div className="modal-content">
-        <div className="modal-body">
-        <CropperCom key={file.key} src={file.preview} file={file} onUpdate={this.onUpdate.bind(this)}/>
-        </div>
-        </div>
-        </div>
-        </div>
-      )}
+        <Dropzone ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
+          <div>Try dropping some files here, or click to select files to upload.</div>
+        </Dropzone>
+        <button type="button" onClick={this.onOpenClick.bind(this)}>
+          Open Dropzone
+        </button>
+        {this.state.files.length > 0 ? <div>
+          <h2>Uploading {this.state.files.length} files...</h2>
+          <div>
+            {this.state.files.map((file) => <a href="#" data-toggle="modal" key={file.key} data-target={'#' + file.key}> <img className="dropzone-preview" key={file.key} src={file.preview} /></a>)}
+            {this.state.files.map((file) => <div key={file.key} id={file.key} className="modal fade" role="dialog">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-body">
+                  <CropperCom key={file.key} src={file.preview} file={file} onUpdate={this.onUpdate.bind(this)}/>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <button type="button" className="btn btn-default" onClick={this.upload.bind(this)}>Upload</button>
-      </div> : null}
-      </div>
-    );
-  }
+    </div> : null}
+  </div>
+);
+}
 }
 
 export default DropzoneCom
