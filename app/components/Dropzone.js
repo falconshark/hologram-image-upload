@@ -42,7 +42,7 @@ class DropzoneCom extends React.Component {
     function _upload(files){
       return new Promise(function(resolve, reject){
         var data = JSON.stringify(files);
-        var req = request.post('/upload.php').send(data).end(function(err, res){
+        var req = request.post('/server/upload.php').send(data).end(function(err, res){
           if(err){
             reject(err);
             return;

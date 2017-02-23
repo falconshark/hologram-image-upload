@@ -1,0 +1,13 @@
+{
+    "name": "sardo/server",
+    "require": {
+        "fpdo/fluentpdo": "^1.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sardo",
+            "email": "sardo@pixelactionstudio.com"
+        }
+    ]
+}

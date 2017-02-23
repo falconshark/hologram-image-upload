@@ -1,4 +1,6 @@
 <?php
+    $db_url = 'mysql:host=localhost;dbname=test;';
+    $db = new PDO($db_url, );
     $request = file_get_contents('php://input');
     $files = json_decode($request);
     if($files){
