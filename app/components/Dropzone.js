@@ -18,6 +18,7 @@ class DropzoneCom extends React.Component {
       var canvasContext = canvas.getContext('2d');
 
       image.src = file['preview'];
+      image.crossOrigin = 'anonymous';
       image.onload = function () {
         canvas.width = image.width;
         canvas.height = image.height;

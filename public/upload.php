@@ -3,7 +3,8 @@
     $files = json_decode($request);
     if($files){
         foreach($files as $file){
-            var_dump($file);
+          $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $file->preview));
+          file_put_contents($file->name, $data);
         }
     }
 ?>
