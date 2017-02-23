@@ -1,0 +1,4 @@
+name = Holgoram Gallery
+description = A module for upload, cropper and display image like a gallery.
+core = 7.x
+package = Pixel Action Studio
