@@ -109,7 +109,12 @@ class DropzoneCom extends React.Component {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-body">
-                  <CropperCom key={file.key} src={file.preview} file={file} onUpdate={this.onUpdate.bind(this)}/>
+                  <CropperCom
+                    config={this.props.cropperConfig}
+                    key={file.key}
+                    src={file.preview}
+                    file={file}
+                    onUpdate={this.onUpdate.bind(this)}/>
                 </div>
               </div>
             </div>
@@ -120,7 +125,13 @@ class DropzoneCom extends React.Component {
     </div> : null}
   </div>
 );
-}
+};
+
+static propTypes = {
+  cropperConfig: React.PropTypes.object,
+  uploader: React.PropTypes.string.isRequired,
+  saver: React.PropTypes.string.isRequired
+};
 }
 
 export default DropzoneCom

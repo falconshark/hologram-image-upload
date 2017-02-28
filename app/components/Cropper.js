@@ -15,6 +15,7 @@ class CropperCom extends React.Component {
   render(){
     return (<div>
       <ReactCrop
+        {...this.props.config}
         onImageLoaded={this.onImageLoaded}
         onComplete={this.onComplete}
         src={this.props.src}
@@ -25,7 +26,7 @@ class CropperCom extends React.Component {
 
   crop(){
     if(this.state.croppedImage){
-        this.props.file['preview'] = this.state.croppedImage;
+      this.props.file['preview'] = this.state.croppedImage;
     }
     this.props.onUpdate(this.props.file);
   }
@@ -55,8 +56,8 @@ class CropperCom extends React.Component {
       ctx.drawImage(originImage, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
 
       canvas.toBlob(function(blob){
-          var croppedImage = URL.createObjectURL(blob);
-          component.setState({croppedImage: croppedImage});
+        var croppedImage = URL.createObjectURL(blob);
+        component.setState({croppedImage: croppedImage});
       }, 'image/jpeg');
     }
   }
