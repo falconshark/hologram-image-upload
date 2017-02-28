@@ -39,10 +39,10 @@ class DropzoneCom extends React.Component {
   }
 
   upload(){
-    function _upload(files){
+    function _upload(files, uploader){
       return new Promise(function(resolve, reject){
         var data = JSON.stringify(files);
-        var req = request.post('/hologram/hologram-server/upload.php').send(data).end(function(err, res){
+        var req = request.post(uploader).send(data).end(function(err, res){
           if(err){
             reject(err);
             return;
@@ -59,7 +59,7 @@ class DropzoneCom extends React.Component {
     }
 
     Promise.all(funList)
-    .then(files => _upload(files))
+    .then(files => _upload(files, this.props.uploader))
     .then(res => {
       console.log(res);
     })
