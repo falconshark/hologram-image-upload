@@ -23,13 +23,14 @@ class DropzoneCom extends React.Component {
         canvas.width = image.width;
         canvas.height = image.height;
         canvasContext.drawImage(image, 0, 0, image.width, image.height);
-
+        
         var dataUrl = canvas.toDataURL();
         file['preview'] = dataUrl;
 
         var newFile = {
           'name': file['name'],
           'key': file['key'],
+          'size': file['size'],
           'preview': file['preview'],
           'type': file['type']
         }
@@ -62,10 +63,14 @@ class DropzoneCom extends React.Component {
     .then(files => _upload(files, this.props.uploader))
     .then(res => {
       console.log(res);
+      this.afterUpload(res.text);
     })
     .catch(err => {
       console.log(err);
     });
+  }
+
+  afterUpload(result){
   }
 
   onDrop(acceptedFiles) {
