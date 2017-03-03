@@ -1,6 +1,6 @@
 
 module.exports = {
-    "entry": "./app/client.js",
+    "entry": "./app/index.js",
     "output": {
         "path": __dirname + "/public/assets",
         "filename": "bundle.js"
