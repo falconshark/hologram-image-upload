@@ -1,9 +1,9 @@
 
 module.exports = {
-    "entry": "./app/index.js",
+    "entry": "./src/hologram.js",
     "output": {
-        "path": __dirname + "/public/assets",
-        "filename": "bundle.js"
+        "path": __dirname + "/dist",
+        "filename": "Hologram.js"
     },
     "module": {
         "loaders": [
