@@ -15,7 +15,7 @@ class DropzoneCom extends React.Component {
     //Convert Image to Data URL
 
     convert(file){
-        return new Promise(function(resolve, reject){
+        return new Promise(function(resolve){
             var image = new Image();
             var canvas = document.createElement('canvas');
             var canvasContext = canvas.getContext('2d');
@@ -42,12 +42,13 @@ class DropzoneCom extends React.Component {
         });
     }
 
-    //Upload converted file by JSON format to server
-
-    upload(){
-        function _upload(files, uploader){
-            return new Promise(function(resolve, reject){
-                var data = JSON.stringify(files);
+    upload(file){
+        var convert = this.convert;
+        var uploader = this.props.uploader;
+        return new Promise(function(resolve, reject){
+            convert(file)
+            .then(file =>{
+                var data = JSON.stringify(file);
                 var req = request.post(uploader).send(data).end(function(err, res){
                     if(err){
                         reject(err);
@@ -56,18 +57,21 @@ class DropzoneCom extends React.Component {
                     resolve(res);
                 });
             });
-        }
+        });
+    }
 
+    //Upload converted file by JSON format to server
+
+    onUpload(){
         var files = this.state.files;
         var funList = [];
         for(let file of files){
-            funList.push(this.convert(file));
+            funList.push(this.upload(file));
         }
 
         Promise.all(funList)
-        .then(files => _upload(files, this.props.uploader))
         .then(res => {
-            this.props.onComplete(res.text);
+            this.props.onComplete(res);
         })
         .catch(err => {
             console.log(err);
@@ -117,7 +121,7 @@ class DropzoneCom extends React.Component {
                     </div>
                 )}
             </div>
-            <Button onClick={this.upload.bind(this)}>Upload</Button>
+            <Button onClick={this.onUpload.bind(this)}>Upload</Button>
         </div> : null
     }
     </div>
