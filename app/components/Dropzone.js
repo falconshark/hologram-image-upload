@@ -1,5 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
+import {Button} from 'react-bootstrap';
 import ModalCom from "./Modal";
 import request from 'superagent';
 
@@ -10,6 +11,8 @@ class DropzoneCom extends React.Component {
       files: []
     };
   }
+
+  //Convert Image to Data URL
 
   convert(file){
     return new Promise(function(resolve, reject){
@@ -38,6 +41,8 @@ class DropzoneCom extends React.Component {
       }
     });
   }
+
+  //Upload converted file by JSON format to server
 
   upload(){
     function _upload(files, uploader){
@@ -103,18 +108,20 @@ class DropzoneCom extends React.Component {
         <Dropzone ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
           <div>Try dropping some files here, or click to select files to upload.</div>
         </Dropzone>
-        <button type="button" onClick={this.onOpenClick.bind(this)}>
-          Open Dropzone
-        </button>
+        <Button onClick={this.onOpenClick.bind(this)}>Open Dropzone</Button>
         {this.state.files.length > 0 ? <div>
           <h2>Uploading {this.state.files.length} files...</h2>
           <div>
             {this.state.files.map((file) => <div key={file.key}>
-              <ModalCom key={file.key} file={file} cropperConfig={this.props.cropperConfig} cropperUpdate={this.onUpdate.bind(this)}/>
+              <ModalCom
+                key={file.key}
+                file={file}
+                cropperConfig={this.props.cropperConfig}
+                cropperUpdate={this.onUpdate.bind(this)}/>
             </div>
         )}
       </div>
-      <button type="button" className="btn btn-default" onClick={this.upload.bind(this)}>Upload</button>
+      <Button onClick={this.upload.bind(this)}>Upload</Button>
     </div> : null}
   </div>
 );

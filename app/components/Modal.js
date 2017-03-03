@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import CropperCom from "./Cropper";
 
 class ModalCom extends React.Component {
@@ -13,11 +13,11 @@ class ModalCom extends React.Component {
   }
 
   close() {
-    this.setState({ showModal: false });
+    this.setState({showModal: false});
   }
 
   open() {
-    this.setState({ showModal: true });
+    this.setState({showModal: true});
   }
 
   render(){

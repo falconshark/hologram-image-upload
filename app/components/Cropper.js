@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactCrop from 'react-image-crop';
+import {Button, Modal} from 'react-bootstrap';
 
 class CropperCom extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class CropperCom extends React.Component {
         onComplete={this.onComplete}
         src={this.props.src}
         />
-      <button onClick={this.crop} data-dismiss= "modal">Save</button>
+      <Button onClick={this.crop}>Save</Button>
     </div>);
   }
 
