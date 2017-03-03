@@ -7,8 +7,11 @@
   <link rel=stylesheet type="text/css" href="css/style.css">
 </head>
 <body>
-  <div class="hologram-dropzone"></div>
-
+  <form>
+    <div class="hologram-dropzone"></div>
+    <input name="photos" type="hidden" />
+    <button type"submit">Submit</button>
+  </form>
 
   <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -19,8 +22,7 @@
       minWidth: 50,
       minHeight: 50
     },
-    uploader: '/hologram/hologram-server/upload.php',
-    saver: '/hologram/hologram-server/saver.php'
+    uploader: '/hologram/hologram-server/upload.php'
   });
   </script>
 </body>
