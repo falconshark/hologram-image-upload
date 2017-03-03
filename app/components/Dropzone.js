@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import CropperCom from "./Cropper";
+import ModalCom from "./Modal";
 import request from 'superagent';
 
 class DropzoneCom extends React.Component {
@@ -23,7 +23,7 @@ class DropzoneCom extends React.Component {
         canvas.width = image.width;
         canvas.height = image.height;
         canvasContext.drawImage(image, 0, 0, image.width, image.height);
-        
+
         var dataUrl = canvas.toDataURL();
         file['preview'] = dataUrl;
 
@@ -109,21 +109,9 @@ class DropzoneCom extends React.Component {
         {this.state.files.length > 0 ? <div>
           <h2>Uploading {this.state.files.length} files...</h2>
           <div>
-            {this.state.files.map((file) => <a href="#" data-toggle="modal" key={file.key} data-target={'#' + file.key}> <img className="dropzone-preview" key={file.key} src={file.preview} /></a>)}
-            {this.state.files.map((file) => <div key={file.key} id={file.key} className="modal fade" role="dialog">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-body">
-                  <CropperCom
-                    config={this.props.cropperConfig}
-                    key={file.key}
-                    src={file.preview}
-                    file={file}
-                    onUpdate={this.onUpdate.bind(this)}/>
-                </div>
-              </div>
+            {this.state.files.map((file) => <div key={file.key}>
+              <ModalCom key={file.key} file={file} cropperConfig={this.props.cropperConfig} cropperUpdate={this.onUpdate.bind(this)}/>
             </div>
-          </div>
         )}
       </div>
       <button type="button" className="btn btn-default" onClick={this.upload.bind(this)}>Upload</button>
