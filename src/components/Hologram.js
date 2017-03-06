@@ -4,7 +4,7 @@ import {Button} from 'react-bootstrap';
 import ModalCom from "./Modal";
 import request from 'superagent';
 
-class DropzoneCom extends React.Component {
+class Hologram extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -105,7 +105,7 @@ class DropzoneCom extends React.Component {
     render() {
         return (
             <div>
-                <Dropzone ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
+                <Dropzone onDrop={this.onDrop.bind(this)}>
                     <div>Try dropping some files here, or click to select files to upload.</div>
                 </Dropzone>
                 <Button onClick={this.onOpenClick.bind(this)}>Open Dropzone</Button>
@@ -139,4 +139,4 @@ class DropzoneCom extends React.Component {
     }
 }
 
-export default DropzoneCom
+export default Hologram

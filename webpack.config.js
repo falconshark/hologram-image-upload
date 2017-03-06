@@ -1,9 +1,12 @@
 
 module.exports = {
-    "entry": "./src/hologram.js",
+    "entry": "./src/components/Hologram.js",
     "output": {
         "path": __dirname + "/dist",
-        "filename": "Hologram.js"
+        "filename": "Hologram.js",
+        library: 'Hologram',
+        libraryTarget: 'umd',
+        umdNamedDefine: true
     },
     "module": {
         "loaders": [
