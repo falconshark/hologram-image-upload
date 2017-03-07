@@ -1,6 +1,6 @@
 {
-    "name": "hologram-upload",
-    "version": "0.0.1",
+    "name": "hologram-image-upload",
+    "version": "0.0.2",
     "author": "Mr.Twister<sardo.ip@sardo.work>",
     "license": "MIT",
     "description": "React image uploader with dropzone and cropper function",
@@ -23,14 +23,17 @@
         "css-loader": "^0.26.1",
         "gulp": "3.9.1",
         "gulp-util": "3.0.7",
-        "webpack": "1.13.3"
+        "webpack": "1.13.3",
+	"react-dom":"15.4.2",
+	"react":"15.3.2"
     },
     "dependencies": {
-        "react": "15.3.2",
         "react-bootstrap": "0.30.7",
-        "react-dom": "15.3.2",
         "react-dropzone": "3.7.3",
         "react-image-crop": "1.0.4",
         "superagent": "3.4.1"
+    },
+    "peerDependencies": {
+        "react": "15.3.2"
     }
 }

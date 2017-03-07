@@ -1,23 +1,25 @@
+var path = require('path');
 
 module.exports = {
-    "entry": "./src/components/Hologram.js",
-    "output": {
-        "path": __dirname + "/dist",
-        "filename": "Hologram.js",
+    entry: './src/components/Hologram.js',
+    output: {
+        path: path.join(__dirname, 'dist'),
         library: 'Hologram',
-        libraryTarget: 'umd',
-        umdNamedDefine: true
+        libraryTarget: 'commonjs2',
+        filename: 'Hologram.js',
     },
-    "module": {
-        "loaders": [
-            {
-                "test": /\.js$/,
-                "loader": "babel"
-            },
-            {
-                "test": /\.css$/,
-                "loader": "css-loader"
-            },
-        ]
-    }
-}
+    externals: {
+        'react': 'react',
+        'object-assign': 'object-assign',
+    },
+    module: {
+        loaders: [{
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            loader: 'babel',
+        }]
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    },
+};

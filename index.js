@@ -1,1 +1,2 @@
-export default Hologram = import Hologram from './dist/Hologram';
+import Hologram from './dist/Hologram';
+export default Hologram
