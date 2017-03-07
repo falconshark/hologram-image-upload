@@ -105,7 +105,7 @@ class Hologram extends React.Component {
     render() {
         return (
             <div>
-                <Dropzone onDrop={this.onDrop.bind(this)}>
+                <Dropzone ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
                     <div>Try dropping some files here, or click to select files to upload.</div>
                 </Dropzone>
                 <Button onClick={this.onOpenClick.bind(this)}>Open Dropzone</Button>

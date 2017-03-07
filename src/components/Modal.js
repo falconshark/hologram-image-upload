@@ -22,8 +22,8 @@ class ModalCom extends React.Component {
 
   render(){
     return (<div>
-      <img className="dropzone-preview" src={this.props.file.preview} onClick={this.open}/>
-      <Modal show={this.state.showModal} onHide={this.close}>
+      <img className="dropzone-preview" src={this.props.file.preview} onClick={this.open.bind(this)}/>
+      <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
         <Modal.Body>
           <CropperCom
             config={this.props.cropperConfig}

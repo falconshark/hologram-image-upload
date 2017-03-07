@@ -24,8 +24,8 @@
         "gulp": "3.9.1",
         "gulp-util": "3.0.7",
         "webpack": "1.13.3",
-	"react-dom":"15.4.2",
-	"react":"15.3.2"
+        "react-dom":"15.4.2",
+        "react":"15.3.2"
     },
     "dependencies": {
         "react-bootstrap": "0.30.7",
