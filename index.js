@@ -1,1 +1,1 @@
-module.exports = require('./dist/Hologram');
+export default Hologram = import Hologram from './dist/Hologram';
