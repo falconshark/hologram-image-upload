@@ -103,11 +103,21 @@ class Hologram extends React.Component {
     }
 
     render() {
+        const style = {
+            marginLeft:'auto',
+            marginRight:'auto',
+            width:'50%',
+            padding: '2.5em 0',
+            background: 'rgba(0,0,0,0.5)',
+            textAlign: 'center',
+            color: '#fff'
+        }
         return (
-            <div>
-                <Dropzone ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
-                    <div>Try dropping some files here, or click to select files to upload.</div>
+            <div className="dropzone">
+                <Dropzone style={style} ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
+                    <div>Drop file here to upload them.</div>
                 </Dropzone>
+                <br></br>
                 <Button onClick={this.onOpenClick.bind(this)}>Open Dropzone</Button>
                 {this.state.files.length > 0 ? <div>
                     <h2>Uploading {this.state.files.length} files...</h2>
@@ -124,19 +134,29 @@ class Hologram extends React.Component {
             <Button onClick={this.onUpload.bind(this)}>Upload</Button>
         </div> : null
     }
-    </div>
-        );
-    };
+</div>
+);
+};
 
-    static propTypes = {
-        cropperConfig: React.PropTypes.object,
-        uploader: React.PropTypes.string.isRequired,
-        onComplete: React.PropTypes.func
-    };
+static propTypes = {
+    cropperConfig: React.PropTypes.object,
+    uploader: React.PropTypes.string.isRequired,
+    style: React.PropTypes.object,
+    onComplete: React.PropTypes.func,
+};
 
-    static defaultProps = {
-        onComplete: () => {}
+static defaultProps = {
+    onComplete: () => {},
+    style : {
+        marginLeft:'auto',
+        marginRight:'auto',
+        width:'50%',
+        padding: '2.5em 0',
+        background: 'rgba(0,0,0,0.5)',
+        textAlign: 'center',
+        color: '#fff'
     }
+}
 }
 
 export default Hologram
