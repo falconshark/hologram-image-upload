@@ -71,7 +71,7 @@ class Hologram extends React.Component {
 
         Promise.all(funList)
         .then(res => {
-            this.props.onComplete(res);
+            this.props.onComplete('response': res, 'files': files});
         })
         .catch(err => {
             console.log(err);
