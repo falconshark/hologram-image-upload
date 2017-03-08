@@ -46,7 +46,7 @@ var crop = {
 	y: 10,
 }
 
-<Hologram uploader="upload.php" crop={crop} />
+<Hologram uploader="upload.php" cropperConfig={crop} />
 ```
 
 #### onComplete(uploadResult) (optional)
