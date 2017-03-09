@@ -103,18 +103,9 @@ class Hologram extends React.Component {
     }
 
     render() {
-        const style = {
-            marginLeft:'auto',
-            marginRight:'auto',
-            width:'50%',
-            padding: '2.5em 0',
-            background: 'rgba(0,0,0,0.5)',
-            textAlign: 'center',
-            color: '#fff'
-        }
         return (
                 <div className="dropzone">
-                    <Dropzone accept={'image/*'} style={style} ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
+                    <Dropzone accept={'image/*'} style={this.props.style} ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
                         <div>Drop file here to upload them.</div>
                     </Dropzone>
                     <br></br>
