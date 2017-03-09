@@ -1,12 +1,16 @@
 .dropzone{
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 
-    img{
-        margin: 5px;
-        border: 1px solid #ccc;
+    .dropzone-image{
+        width: 400px;
+        height: 400px;
+        overflow: hidden;
         float: left;
-        width: 300px;
+
+        img{
+            overflow: hidden;
+        }
     }
 }
