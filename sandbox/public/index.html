@@ -8,16 +8,23 @@
 </head>
 
 <body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Hologram</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="https://github.com/dollars0427/hologram-image-upload">Github</a></li>
-    </ul>
-  </div>
-</nav>
+    <nav class="navbar navbar-default">
+     <div class="container-fluid">
+       <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="/">Hologram</a>
+       </div>
+       <div class="collapse navbar-collapse" id="navbar">
+         <ul class="nav navbar-nav">
+           <li><a href="https://github.com/dollars0427/hologram-image-upload">Github</a></li>
+         </ul>
+       </div>
+     </div>
+   </nav>
 
 <div id="hologram-dropzone"></div>
 <body>
@@ -25,7 +32,8 @@
     <script src="dist/Hologram.js"></script>
     <script>
     window.hologram(document.getElementById('hologram-dropzone'), {
-        cropperConfig: { //Config of react-image-crop
+        //Config of react-image-crop
+        cropperConfig: {
             minWidth: 50,
             minHeight: 50
         },

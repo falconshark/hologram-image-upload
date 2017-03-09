@@ -14,13 +14,14 @@ class CropperCom extends React.Component {
   }
 
   render(){
-    return (<div>
+    return (<div className="text-center">
       <ReactCrop
         {...this.props.config}
         onImageLoaded={this.onImageLoaded}
         onComplete={this.onComplete}
         src={this.props.src}
         />
+    <br></br>
       <Button onClick={this.crop}>Save</Button>
     </div>);
   }

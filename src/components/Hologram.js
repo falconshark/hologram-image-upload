@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import {Button} from 'react-bootstrap';
+import {Grid, Row, Col, Panel, Button} from 'react-bootstrap';
 import ModalCom from "./Modal";
 import request from 'superagent';
 
@@ -113,28 +113,39 @@ class Hologram extends React.Component {
             color: '#fff'
         }
         return (
-            <div className="dropzone">
-                <Dropzone style={style} ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
-                    <div>Drop file here to upload them.</div>
-                </Dropzone>
-                <br></br>
-                <Button onClick={this.onOpenClick.bind(this)}>Open Dropzone</Button>
-                {this.state.files.length > 0 ? <div>
-                    <h2>Uploading {this.state.files.length} files...</h2>
-                    <div>
-                        {this.state.files.map((file) => <div key={file.key}>
-                        <ModalCom
-                            key={file.key}
-                            file={file}
-                            cropperConfig={this.props.cropperConfig}
-                            cropperUpdate={this.onUpdate.bind(this)}/>
+            <Grid>
+                <div className="dropzone">
+                    <Dropzone style={style} ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
+                        <div>Drop file here to upload them.</div>
+                    </Dropzone>
+                    <br></br>
+                    <Button onClick={this.onOpenClick.bind(this)}>Open Dropzone</Button>
+                    {this.state.files.length > 0 ? <div>
+                        <br></br><br></br>
+                        <div>
+                            <Panel>
+                            <div>
+                                <Row>
+                                    {this.state.files.map((file) => <div key={file.key}>
+                                    <Col md={2}>
+                                        <ModalCom
+                                            key={file.key}
+                                            file={file}
+                                            cropperConfig={this.props.cropperConfig}
+                                            cropperUpdate={this.onUpdate.bind(this)}/>
+                                    </Col>
+                                </div>
+                            )}
+                        </Row>
                     </div>
-                )}
-            </div>
-            <Button onClick={this.onUpload.bind(this)}>Upload</Button>
-        </div> : null
-    }
-</div>
+                </Panel>
+                </div>
+                <br></br>
+                <Button onClick={this.onUpload.bind(this)}>Upload</Button>
+            </div> : null
+        }
+    </div>
+</Grid>
 );
 };
 
