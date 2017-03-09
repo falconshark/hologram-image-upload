@@ -2,10 +2,12 @@
 
 React image uploader with dropzone and cropper function, which used [React Dropzone](https://github.com/okonet/react-dropzone) and [React Image Crop](https://github.com/DominicTobias/react-image-crop).
 
-This project still under active development, please feel free to open issues or pull request. 
+This project still under active development, please feel free to open issues or pull request.
 
 [![npm]( 	http://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/hologram-image-upload)
 
+##Demo
+https://hologram.sardo.work/
 
 ## Features
 - Using dropzone to upload multiple image files
@@ -24,7 +26,7 @@ You should require ReactCrop.css and bootstrap.css (or bootstrap.min.css), the c
 
  ```html
 <link rel=stylesheet type="text/css" href="css/ReactCrop.css">
- 
+
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
  ```
 
@@ -57,7 +59,7 @@ const style = {
 
 
 #### cropperConfig (optional)
-Config of React Image Crop. 
+Config of React Image Crop.
 https://github.com/DominicTobias/react-image-crop
 
 ```jsx
