@@ -20,7 +20,7 @@ npm install hologram-image-upload --save
 ```js
 import Hologram from 'hologram-image-upload';
 ```
-You should require ReactCrop.css, the css file of React Image Crop too.
+You should require ReactCrop.css and bootstrap.css (or bootstrap.min.css), the css file of React Image Crop and Bootstrap too.
 
  ```html
  <link rel=stylesheet type="text/css" href="css/ReactCrop.css">
@@ -35,6 +35,24 @@ The post url of your upload handler.
 ```jsx
 <Hologram uploader="upload.php"/>
 ```
+
+#### style (optional)
+Style of dropzone. You can pass a object to setting the style of dropzone.
+<br>
+The default style of dropzone is:
+
+```js
+const style = {
+		marginLeft:'auto',
+   		marginRight:'auto',
+   		width:'50%',
+   		padding: '2.5em 0',
+   		background: 'rgba(0,0,0,0.5)',
+   		textAlign: 'center',
+   		color: '#fff'
+   }
+```
+
 
 #### cropperConfig (optional)
 Config of React Image Crop. 
@@ -55,9 +73,16 @@ It will pass a object which contain http response, you can use it to handler the
 
 ## Contributing
 
-You can clone this repository then start develop with these command:
+You can clone this repository then start develop at sandbox, or feel free to open issue on github.
 
 Build package:
+
 ```bash
 npm run build
+```
+
+Build sandbox:
+
+```bash
+webpack
 ```

@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
     entry: './src/components/Hologram.js',
@@ -20,6 +21,11 @@ module.exports = {
             loader: 'babel',
         }]
     },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: { warnings: false }
+        })
+    ],
     resolve: {
         extensions: ['', '.js', '.jsx']
     },

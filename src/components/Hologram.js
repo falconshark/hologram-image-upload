@@ -115,7 +115,7 @@ class Hologram extends React.Component {
         return (
             <Grid>
                 <div className="dropzone">
-                    <Dropzone style={style} ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
+                    <Dropzone accept={'image/*'} style={style} ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
                         <div>Drop file here to upload them.</div>
                     </Dropzone>
                     <br></br>
