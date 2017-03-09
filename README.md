@@ -22,11 +22,11 @@ npm install hologram-image-upload --save
 ```js
 import Hologram from 'hologram-image-upload';
 ```
-You should require ReactCrop.css and bootstrap.css (or bootstrap.min.css), the css file of React Image Crop and Bootstrap too.
+You should require dist/style.css and dist/ReactCrop.css and bootstrap.css (or bootstrap.min.css), the css file of React Image Crop and Bootstrap too.
 
  ```html
-<link rel=stylesheet type="text/css" href="css/ReactCrop.css">
-
+<link rel=stylesheet type="text/css" href="dist/css/ReactCrop.css">
+<link rel=stylesheet type="text/css" href="dist/css/style.css">
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
  ```
 
