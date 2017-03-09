@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import {Grid, Row, Col, Panel, Button} from 'react-bootstrap';
+import {Panel, Button} from 'react-bootstrap';
 import ModalCom from "./Modal";
 import request from 'superagent';
 
@@ -113,7 +113,6 @@ class Hologram extends React.Component {
             color: '#fff'
         }
         return (
-            <Grid>
                 <div className="dropzone">
                     <Dropzone accept={'image/*'} style={style} ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
                         <div>Drop file here to upload them.</div>
@@ -125,18 +124,14 @@ class Hologram extends React.Component {
                         <div>
                             <Panel>
                             <div>
-                                <Row>
                                     {this.state.files.map((file) => <div key={file.key}>
-                                    <Col md={2}>
                                         <ModalCom
                                             key={file.key}
                                             file={file}
                                             cropperConfig={this.props.cropperConfig}
                                             cropperUpdate={this.onUpdate.bind(this)}/>
-                                    </Col>
                                 </div>
                             )}
-                        </Row>
                     </div>
                 </Panel>
                 </div>
@@ -145,7 +140,6 @@ class Hologram extends React.Component {
             </div> : null
         }
     </div>
-</Grid>
 );
 };
 
