@@ -109,7 +109,6 @@ class Hologram extends React.Component {
                         <div>Drop file here to upload them.</div>
                     </Dropzone>
                     <br></br>
-                    <Button onClick={this.onOpenClick.bind(this)}>Open Dropzone</Button>
                     {this.state.files.length > 0 ? <div>
                         <br></br><br></br>
                         <div>
