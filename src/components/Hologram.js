@@ -48,6 +48,8 @@ class Hologram extends React.Component {
         });
     }
 
+    //Upload file to upload hanlder by superagent
+
     upload(file){
         var convert = this.convert;
         var uploader = this.props.uploader;
@@ -109,6 +111,8 @@ class Hologram extends React.Component {
         });
     }
 
+    //Open dropzone without click dropzone
+
     onOpenClick() {
         this.dropzone.open();
     }
@@ -125,6 +129,7 @@ class Hologram extends React.Component {
                     <div>
                         <Panel>
                             <div>
+                                //Pass uploaded file to modal component
                                 {this.state.files.map((file) => <div key={file.key}>
                                 <ModalCom
                                     key={file.key}
