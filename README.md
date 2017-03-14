@@ -33,17 +33,14 @@ You should require dist/style.css and dist/ReactCrop.css and bootstrap.css (or b
 ## Props
 
 #### uploader (required)
-
 The post url of your upload handler.
 
 ```jsx
 <Hologram uploader="upload.php"/>
 ```
 
-#### style (optional)
-Style of dropzone. You can pass a object to setting the style of dropzone.
-<br>
-The default style of dropzone is:
+#### maxFiles (optional)
+If files more than this number, it will not be uploaded.  
 
 ```js
 const style = {
@@ -55,6 +52,26 @@ const style = {
    		textAlign: 'center',
    		color: '#fff'
    }
+```
+
+#### dropzoneConfig (optional)
+Config of React Dropzone.
+https://github.com/okonet/react-dropzone
+
+```jsx
+var dropzoneConfig = {
+        style : {
+            marginLeft:'auto',
+            marginRight:'auto',
+            width:'50%',
+            padding: '2.5em 0',
+            background: 'rgba(0,0,0,0.5)',
+            textAlign: 'center',
+            color: '#fff'
+        }
+    }
+
+<Hologram uploader="upload.php" cropperConfig={crop} dropzoneConfig={dropzoneConfig}/>
 ```
 
 
