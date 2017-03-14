@@ -129,7 +129,6 @@ class Hologram extends React.Component {
                     <div>
                         <Panel>
                             <div>
-                                //Pass uploaded file to modal component
                                 {this.state.files.map((file) => <div key={file.key}>
                                 <ModalCom
                                     key={file.key}
@@ -143,6 +142,8 @@ class Hologram extends React.Component {
             </div>
             <br></br>
             <Button onClick={this.onUpload.bind(this)}>Upload</Button>
+            <Button onClick={this.clear.bind(this)}>Clear</Button>
+
         </div> : null
     }
 </div>
