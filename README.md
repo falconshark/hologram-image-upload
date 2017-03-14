@@ -40,18 +40,11 @@ The post url of your upload handler.
 ```
 
 #### maxFiles (optional)
-If files more than this number, it will not be uploaded.  
+If files more than this number, it will not be uploaded.  Default Number is 10.
 
 ```js
-const style = {
-		marginLeft:'auto',
-   		marginRight:'auto',
-   		width:'50%',
-   		padding: '2.5em 0',
-   		background: 'rgba(0,0,0,0.5)',
-   		textAlign: 'center',
-   		color: '#fff'
-   }
+var maxFiles = 10;
+<Hologram uploader="upload.php" maxFiles={maxFiles}/>
 ```
 
 #### dropzoneConfig (optional)
