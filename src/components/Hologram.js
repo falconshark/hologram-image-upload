@@ -12,6 +12,12 @@ class Hologram extends React.Component {
         };
     }
 
+    clear(){
+        this.setState({
+            files: []
+        });
+    }
+
     //Convert Image to Data URL
 
     convert(file){
@@ -79,11 +85,16 @@ class Hologram extends React.Component {
     }
 
     onDrop(acceptedFiles) {
-        var files = [];
+        var files = this.state.files;
         for(let file of acceptedFiles){
             file['key'] = Math.random().toString(36).substring(5);
-            files.push(file);
+            if(files.length < this.props.maxFiles){
+                files.push(file);
+            }else{
+                break;
+            }
         }
+
         this.setState({
             files: files
         });
@@ -104,52 +115,56 @@ class Hologram extends React.Component {
 
     render() {
         return (
-                <div className="dropzone">
-                    <Dropzone accept={'image/*'} style={this.props.style} ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
-                        <div>Drop file here to upload them.</div>
-                    </Dropzone>
-                    <br></br>
-                    {this.state.files.length > 0 ? <div>
-                        <br></br><br></br>
-                        <div>
-                            <Panel>
+            <div className="dropzone">
+                <Dropzone {... this.props.dropzoneConfig} accept={'image/*'} ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
+                    <div>Drop file here to upload them.</div>
+                </Dropzone>
+                <br></br>
+                {this.state.files.length > 0 ? <div>
+                    <br></br><br></br>
+                    <div>
+                        <Panel>
                             <div>
-                                    {this.state.files.map((file) => <div key={file.key}>
-                                        <ModalCom
-                                            key={file.key}
-                                            file={file}
-                                            cropperConfig={this.props.cropperConfig}
-                                            cropperUpdate={this.onUpdate.bind(this)}/>
-                                </div>
-                            )}
+                                {this.state.files.map((file) => <div key={file.key}>
+                                <ModalCom
+                                    key={file.key}
+                                    file={file}
+                                    cropperConfig={this.props.cropperConfig}
+                                    cropperUpdate={this.onUpdate.bind(this)}/>
+                            </div>
+                        )}
                     </div>
                 </Panel>
-                </div>
-                <br></br>
-                <Button onClick={this.onUpload.bind(this)}>Upload</Button>
-            </div> : null
-        }
-    </div>
+            </div>
+            <br></br>
+            <Button onClick={this.onUpload.bind(this)}>Upload</Button>
+        </div> : null
+    }
+</div>
 );
 };
 
 static propTypes = {
     cropperConfig: React.PropTypes.object,
+    dropzoneConfig: React.PropTypes.object,
+    maxFiles: React.PropTypes.number,
     uploader: React.PropTypes.string.isRequired,
-    style: React.PropTypes.object,
     onComplete: React.PropTypes.func,
 };
 
 static defaultProps = {
     onComplete: () => {},
-    style : {
-        marginLeft:'auto',
-        marginRight:'auto',
-        width:'50%',
-        padding: '2.5em 0',
-        background: 'rgba(0,0,0,0.5)',
-        textAlign: 'center',
-        color: '#fff'
+    maxFiles: 10,
+    dropzoneConfig : {
+        style : {
+            marginLeft:'auto',
+            marginRight:'auto',
+            width:'50%',
+            padding: '2.5em 0',
+            background: 'rgba(0,0,0,0.5)',
+            textAlign: 'center',
+            color: '#fff'
+        }
     }
 }
 }
