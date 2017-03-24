@@ -21,7 +21,7 @@
     "babel-preset-stage-0": "6.16.0",
     "gulp": "3.9.1",
     "gulp-util": "3.0.7",
-    "react": "15.3.2",
+    "react": "15.4.2",
     "react-dom": "15.4.2",
     "webpack": "1.13.3"
   },
@@ -29,11 +29,9 @@
     "react-bootstrap": "0.30.7",
     "react-dropzone": "3.7.3",
     "react-image-crop": "1.0.4",
-    "react-redux": "5.0.3",
-    "redux": "3.6.0",
     "superagent": "3.4.1"
   },
   "peerDependencies": {
-    "react": "15.3.2"
+    "react": "15.4.2"
   }
 }
