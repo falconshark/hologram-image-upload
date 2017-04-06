@@ -139,7 +139,7 @@ class Hologram extends React.Component {
                 {this.state.files.length > 0 ? <div>
                     <br></br><br></br>
                     <div>
-                        <p class="help-block">Click Image to crop it.</p>
+                        <p className="help-block">Click Image to crop it.</p>
                         <Panel>
                             <div>
                                 {this.state.files.map((file) => <div key={file['file'].key}>

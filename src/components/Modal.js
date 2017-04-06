@@ -30,7 +30,7 @@ class ModalCom extends React.Component {
                     <CropperCom
                         config={this.props.cropperConfig}
                         src={this.props.file['originFile'].preview}
-                        file={this.props.file['file']}
+                        file={this.props.file}
                         onUpdate={this.props.cropperUpdate}
                         closeModal={this.close.bind(this)}/>
                 </Modal.Body>
