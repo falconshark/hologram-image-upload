@@ -47,6 +47,8 @@ class CropperCom extends React.Component {
     var imageWidth =  originImage.naturalWidth;
     var imageHeight = originImage.naturalHeight;
 
+    //Use canvas to create a cropped version of image
+
     if(crop.width || crop.height){
       var cropX = (crop.x / 100) * imageWidth;
       var cropY = (crop.y / 100) * imageHeight;
