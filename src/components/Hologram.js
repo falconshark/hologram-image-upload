@@ -116,7 +116,7 @@ class Hologram extends React.Component {
 
     onUpdate(updateFile){
         var files = this.state.files;
-        var fileIndex = files.findIndex((file => file.key === updateFile.key));
+        var fileIndex = files.findIndex((file => file['file'].key === updateFile.key));
         files[fileIndex] = updateFile;
         this.setState({
             files: files
