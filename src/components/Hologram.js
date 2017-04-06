@@ -74,7 +74,7 @@ class Hologram extends React.Component {
         var files = this.state.files;
         var funList = [];
         for(let file of files){
-            funList.push(this.upload(file));
+            funList.push(this.upload(file['file']));
         }
 
         Promise.all(funList)
@@ -88,10 +88,22 @@ class Hologram extends React.Component {
 
     onDrop(acceptedFiles) {
         var files = this.state.files;
-        for(let file of acceptedFiles){
-            file['key'] = Math.random().toString(36).substring(5);
+
+        for(let acceptedFile of acceptedFiles){
+            let file = {
+                'name': acceptedFile['name'],
+                'key': Math.random().toString(36).substring(1),
+                'size': acceptedFile['size'],
+                'preview': acceptedFile['preview'],
+                'type': acceptedFile['type']
+            }
+
+            var originFile = Object.assign({}, file);
+
+            let fileObj = {file: file, originFile: originFile};
+
             if(files.length < this.props.maxFiles){
-                files.push(file);
+                files.push(fileObj);
             }else{
                 break;
             }
@@ -129,9 +141,9 @@ class Hologram extends React.Component {
                     <div>
                         <Panel>
                             <div>
-                                {this.state.files.map((file) => <div key={file.key}>
+                                {this.state.files.map((file) => <div key={file['file'].key}>
                                 <ModalCom
-                                    key={file.key}
+                                    key={file['file'].key}
                                     file={file}
                                     cropperConfig={this.props.cropperConfig}
                                     cropperUpdate={this.onUpdate.bind(this)}/>

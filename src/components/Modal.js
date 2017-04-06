@@ -23,14 +23,14 @@ class ModalCom extends React.Component {
     render(){
         return (<div>
             <div className="dropzone-image">
-                <img className="img-responsive img-thumbnail" src={this.props.file.preview} onClick={this.open.bind(this)}/>
+                <img className="img-responsive img-thumbnail" src={this.props.file['file'].preview} onClick={this.open.bind(this)}/>
             </div>
             <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
                 <Modal.Body>
                     <CropperCom
                         config={this.props.cropperConfig}
-                        src={this.props.file.preview}
-                        file={this.props.file}
+                        src={this.props.file['originFile'].preview}
+                        file={this.props.file['file']}
                         onUpdate={this.props.cropperUpdate}
                         closeModal={this.close.bind(this)}/>
                 </Modal.Body>
