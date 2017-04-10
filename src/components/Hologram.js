@@ -75,8 +75,8 @@ class Hologram extends React.Component {
         var funList = [];
         var uploadedFile = [];
         for(let file of files){
-            funList.push(this.upload(file['file']));
-            uploadedFile.push(file['file']);
+            funList.push(this.upload(file));
+            uploadedFile.push(file['name']);
         }
 
         Promise.all(funList)
@@ -97,15 +97,12 @@ class Hologram extends React.Component {
                 'key': Math.random().toString(36).substring(1),
                 'size': acceptedFile['size'],
                 'preview': acceptedFile['preview'],
+                'origin': acceptedFile['preview'],
                 'type': acceptedFile['type']
             }
 
-            var originFile = Object.assign({}, file);
-
-            let fileObj = {file: file, originFile: originFile};
-
             if(files.length < this.props.maxFiles){
-                files.push(fileObj);
+                files.push(file);
             }else{
                 break;
             }
@@ -118,7 +115,7 @@ class Hologram extends React.Component {
 
     onUpdate(updateFile){
         var files = this.state.files;
-        var fileIndex = files.findIndex((file => file['file'].key === updateFile.key));
+        var fileIndex = files.findIndex((file => file.key === updateFile.key));
         files[fileIndex] = updateFile;
         this.setState({
             files: files
@@ -144,9 +141,9 @@ class Hologram extends React.Component {
                         <p className="help-block">Click Image to crop it.</p>
                         <Panel>
                             <div>
-                                {this.state.files.map((file) => <div key={file['file'].key}>
+                                {this.state.files.map((file) => <div key={file.key}>
                                 <ModalCom
-                                    key={file['file'].key}
+                                    key={file.key}
                                     file={file}
                                     cropperConfig={this.props.cropperConfig}
                                     cropperUpdate={this.onUpdate.bind(this)}/>

@@ -28,9 +28,9 @@ class CropperCom extends React.Component {
 
   crop(){
     if(this.state.croppedImage){
-      this.props.file['file']['preview'] = this.state.croppedImage;
+      this.props.file['preview'] = this.state.croppedImage;
   }else{
-      this.props.file['file']['preview'] = this.props.file['originFile']['preview'];
+      this.props.file['preview'] = this.props.file['origin'];
   }
 
     this.props.closeModal();
