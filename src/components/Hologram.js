@@ -76,7 +76,7 @@ class Hologram extends React.Component {
         var uploadedFile = [];
         for(let file of files){
             funList.push(this.upload(file));
-            uploadedFile.push(file['name']);
+            uploadedFile.push({'key': file['key'], 'name': file['name']);
         }
 
         Promise.all(funList)
