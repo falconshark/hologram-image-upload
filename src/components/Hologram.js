@@ -175,9 +175,6 @@ static defaultProps = {
     maxFiles: 10,
     dropzoneConfig : {
         style : {
-            marginLeft:'auto',
-            marginRight:'auto',
-            width:'50%',
             padding: '2.5em 0',
             background: 'rgba(0,0,0,0.5)',
             textAlign: 'center',
