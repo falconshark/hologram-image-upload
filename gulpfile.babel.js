@@ -1,15 +1,28 @@
 import gulp from 'gulp';
 var gutil = require('gulp-util');
+var concatCss = require('gulp-concat-css');
+var cleanCSS = require('gulp-clean-css');
 var webpack = require('webpack');
 var webpackCfg = require('./webpack.config.js');
-
-gulp.task('default', ['build']);
 
 gulp.task('watch', function () {
   gulp.watch('src/**/*.js', ['build']);
 });
 
-gulp.task('build', function () {
+gulp.task('build:css', function(){
+    return gulp.src(
+        ['./src/css/*.css',
+        './node_modules/react-image-crop/dist/ReactCrop.css',
+        './node_modules/vex-js/dist/css/vex.css',
+        './node_modules/vex-js/dist/css/vex-theme-os.css'
+        ]
+    )
+    .pipe(concatCss('bundle.css'))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('./dist/css'))
+});
+
+gulp.task('build:js', function () {
     // run webpack
     webpack(webpackCfg, function(err, stats) {
         if(err) throw new gutil.PluginError('webpack', err);
@@ -20,3 +33,10 @@ gulp.task('build', function () {
     });
     console.log('build');
 });
+
+gulp.task('build', [
+  'build:css',
+  'build:js']
+);
+
+gulp.task('default', ['build']);
