@@ -1,3 +1,6 @@
+var vex = require('vex-js');
+vex.registerPlugin(require('vex-dialog'));
+vex.defaultOptions.className = 'vex-theme-os';
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import {Panel, Button} from 'react-bootstrap';

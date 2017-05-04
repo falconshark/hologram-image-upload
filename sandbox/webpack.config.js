@@ -7,6 +7,10 @@ module.exports = {
         filename: 'Hologram.js',
     },
     module: {
+        noParse:[
+            /node_modules\/vex-js\/dist\/js\/vex.js/,
+            /node_modules\/vex-dialog\/dist\/vex.dialog.js/,
+        ],
         loaders: [{
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
