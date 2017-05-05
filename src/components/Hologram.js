@@ -1,9 +1,5 @@
-var vex = require('vex-js');
-vex.registerPlugin(require('vex-dialog'));
-vex.defaultOptions.className = 'vex-theme-os';
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import {Panel, Button} from 'react-bootstrap';
 import ModalCom from "./Modal";
 import request from 'superagent';
 
@@ -91,6 +87,10 @@ class Hologram extends React.Component {
         });
     }
 
+    onOpenClick() {
+        this.dropzone.open();
+    }
+
     onDrop(acceptedFiles) {
         var files = this.state.files;
 
@@ -134,35 +134,27 @@ class Hologram extends React.Component {
     render() {
         return (
             <div className="dropzone">
-                <Dropzone {... this.props.dropzoneConfig} accept={'image/*'} ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}>
-                    <div>Drop file here to upload them.</div>
-                </Dropzone>
-                <br></br>
-                {this.state.files.length > 0 ? <div>
-                    <br></br><br></br>
-                    <div>
-                        <p className="help-block">Click Image to crop it.</p>
-                        <Panel>
-                            <div>
-                                {this.state.files.map((file) => <div key={file.key}>
-                                <ModalCom
-                                    key={file.key}
-                                    file={file}
-                                    cropperConfig={this.props.cropperConfig}
-                                    cropperUpdate={this.onUpdate.bind(this)}/>
-                            </div>
-                        )}
-                    </div>
-                </Panel>
-            </div>
-            <br></br>
-            <Button onClick={this.onUpload.bind(this)}>Upload</Button>
-            <Button onClick={this.clear.bind(this)}>Clear</Button>
-
-        </div> : null
-    }
-</div>
-);
+                <Dropzone {... this.props.dropzoneConfig} accept={'image/*'}
+                    ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}
+                    disableClick={true}>
+                    <div>Drop images here to upload them.</div>
+                    {this.state.files.length > 0 ?
+                        <div className="image-wrapper">
+                            <button className="hologram-btn" onClick={this.onOpenClick.bind(this)}>Open Dropzone</button>
+                            <button className="hologram-btn" onClick={this.onUpload.bind(this)}>Upload</button>
+                            <p className="help-block">Click Image to crop it.</p>
+                                {this.state.files.map((file) =>
+                                    <ModalCom
+                                        key={file.key}
+                                        file={file}
+                                        cropperConfig={this.props.cropperConfig}
+                                        cropperUpdate={this.onUpdate.bind(this)}/>
+                                )}
+                    </div> : <button className="hologram-btn" onClick={this.onOpenClick.bind(this)}>Open Dropzone</button>
+                }
+            </Dropzone>
+        </div>
+    );
 };
 
 static propTypes = {
@@ -178,6 +170,7 @@ static defaultProps = {
     maxFiles: 10,
     dropzoneConfig : {
         style : {
+            width:'100%',
             padding: '2.5em 0',
             background: 'rgba(0,0,0,0.5)',
             textAlign: 'center',

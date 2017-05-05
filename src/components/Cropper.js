@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactCrop from 'react-image-crop';
-import {Button, Modal} from 'react-bootstrap';
 
 class CropperCom extends React.Component {
   constructor(props) {
@@ -22,7 +21,7 @@ class CropperCom extends React.Component {
         src={this.props.src}
         />
     <br></br>
-      <Button onClick={this.crop}>Save</Button>
+    <button className="hologram-btn" onClick={this.crop}>Save</button>
     </div>);
   }
 

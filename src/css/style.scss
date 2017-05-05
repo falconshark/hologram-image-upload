@@ -1,21 +1,48 @@
-.dropzone{
+.hologram-btn{
+    display: block;
+    margin-top: 1em;
+    background-color: #3E3F3A;
+    border: none;
+    color: white;
+    padding: 10px 32px;
     text-align: center;
+    text-decoration: none;
     margin-left: auto;
     margin-right: auto;
+    font-size: 16px;
+}
 
-    .btn-default{
+
+.dropzone{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-left: 1em;
+    margin-right: 1em;
+
+    .hologram-btn{
+        display: inline-block;
+        margin-right: 1em;
+    }
+
+    .image-wrapper{
         margin-left: 1em;
-        margin-bottom: 2em;
     }
 
     .dropzone-image{
-        width: 400px;
-        height: 400px;
+        width: 200px;
+        height: 200px;
+        margin-right: 2em;
+        display: inline-block;
+        border-style: dashed dashed dashed dashed;
         overflow: hidden;
-        float: left;
 
         img{
             overflow: hidden;
+            width:100%;
+            height:100%;
+            object-fit: cover;
+            border-radius: 10px;
         }
     }
 }

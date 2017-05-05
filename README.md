@@ -6,7 +6,7 @@ This project still under active development, please feel free to open issues or 
 
 [![npm]( 	http://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/hologram-image-upload)
 
-##Demo
+## Demo
 https://hologram.sardo.work/
 
 ## Features
@@ -22,13 +22,13 @@ npm install hologram-image-upload --save
 ```js
 import Hologram from 'hologram-image-upload';
 ```
-You should require dist/style.css and dist/ReactCrop.css and bootstrap.css (or bootstrap.min.css), the css file of React Image Crop and Bootstrap too.
+then require dist/Hologram.css:
 
  ```html
-<link rel=stylesheet type="text/css" href="dist/css/ReactCrop.css">
-<link rel=stylesheet type="text/css" href="dist/css/style.css">
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<link rel=stylesheet type="text/css" href="dist/css/Hologram.css">
  ```
+
+After version 2.0, you will not need require css file of react crop and bootstrap anymore.
 
 ## Props
 
@@ -53,18 +53,15 @@ https://github.com/okonet/react-dropzone
 
 ```jsx
 var dropzoneConfig = {
-        style : {
-            marginLeft:'auto',
-            marginRight:'auto',
-            width:'50%',
-            padding: '2.5em 0',
-            background: 'rgba(0,0,0,0.5)',
-            textAlign: 'center',
-            color: '#fff'
-        }
+            style : {
+                textAlign: 'center',
+                padding: '2.5em 0',
+                background: 'rgba(0,0,0,0.5)',
+                color: '#fff'
+            }
     }
 
-<Hologram uploader="upload.php" cropperConfig={crop} dropzoneConfig={dropzoneConfig}/>
+<Hologram uploader="upload.php" dropzoneConfig={dropzoneConfig}/>
 ```
 
 
@@ -81,7 +78,7 @@ var crop = {
 <Hologram uploader="upload.php" cropperConfig={crop} />
 ```
 
-#### onComplete(uploadResult) (optional)
+#### onComplete(result) (optional)
 Callback function which trigger when image uploaded.
 It will pass a object which contain http response, you can use it to handler the result of upload.  
 
@@ -95,8 +92,8 @@ Build package:
 npm run build
 ```
 
-Build sandbox:
+Watch package change and build it:
 
 ```bash
-webpack
+npm run watch
 ```

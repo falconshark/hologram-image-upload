@@ -1,41 +1,39 @@
 import React from 'react';
-import {Modal} from 'react-bootstrap';
+import Modal from 'react-responsive-modal';
 import CropperCom from "./Cropper";
 
 class ModalCom extends React.Component {
     constructor(props) {
         super(props);
-        this.close = this.close.bind(this);
-        this.open = this.open.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
         this.state = {
-            showModal: false
+            open: false
         };
     }
 
-    close() {
-        this.setState({showModal: false});
+    openModal() {
+        this.setState({open: true});
     }
 
-    open() {
-        this.setState({showModal: true});
+    closeModal() {
+        this.setState({open: false});
     }
 
     render(){
-        return (<div>
+        return (
             <div className="dropzone-image">
-                <img className="img-responsive img-thumbnail" src={this.props.file['preview']} onClick={this.open.bind(this)}/>
-            </div>
-            <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-                <Modal.Body>
+                <img src={this.props.file['preview']} onClick={this.openModal.bind(this)}/>
+                <Modal open={this.state.open} onClose={() => this.closeModal()}>
                     <CropperCom
                         config={this.props.cropperConfig}
                         src={this.props.file['origin']}
                         file={this.props.file}
                         onUpdate={this.props.cropperUpdate}
-                        closeModal={this.close.bind(this)}/>
-                </Modal.Body>
-            </Modal>
-        </div>);
+                        closeModal={this.closeModal.bind(this)}/>
+                </Modal>
+            </div>
+        );
     }
 }
 

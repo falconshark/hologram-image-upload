@@ -1,2 +1,4 @@
 node_modules
 dist
+sandbox/public/css
+sandbox/public/js

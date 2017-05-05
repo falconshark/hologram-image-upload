@@ -6,19 +6,19 @@ var webpack = require('webpack');
 var webpackCfg = require('./webpack.config.js');
 
 gulp.task('watch', function () {
-    gulp.watch('src/**/*.js', ['build:js']);
-    gulp.watch('src/css/*.css', ['build:css']);
+    gulp.watch('../src/**/*.js', ['build:js']);
+    gulp.watch('../src/css/*.css', ['build:css']);
 });
 
 gulp.task('build:css', function(){
     return gulp.src(
-        ['./src/css/*.css',
-        './node_modules/react-image-crop/dist/ReactCrop.css'
+        ['../src/css/*.css',
+        '../node_modules/react-image-crop/dist/ReactCrop.css'
         ]
     )
-    .pipe(concatCss('Hologram.css'))
+    .pipe(concatCss('bundle.css'))
     .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(gulp.dest('./dist/css'))
+    .pipe(gulp.dest('./public/css'))
 });
 
 gulp.task('build:js', function () {
