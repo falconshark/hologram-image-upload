@@ -150,7 +150,7 @@ class Hologram extends React.Component {
                                         cropperConfig={this.props.cropperConfig}
                                         cropperUpdate={this.onUpdate.bind(this)}/>
                                 )}
-                    </div> : <button className="hologram-btn" onClick={this.onOpenClick.bind(this)}>Open Dropzone</button>
+                    </div> : <button className="hologram-btn" type="button" onClick={this.onOpenClick.bind(this)}>Open Dropzone</button>
                 }
             </Dropzone>
         </div>
