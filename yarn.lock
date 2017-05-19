@@ -1104,12 +1104,6 @@ crypto-browserify@~3.2.6:
     ripemd160 "0.2.0"
     sha.js "2.2.6"
 
-css-vendor@^0.3.8:
-  version "0.3.8"
-  resolved "https://registry.yarnpkg.com/css-vendor/-/css-vendor-0.3.8.tgz#6421cfd3034ce664fe7673972fd0119fc28941fa"
-  dependencies:
-    is-in-browser "^1.0.2"
-
 css@^2.0.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/css/-/css-2.2.1.tgz#73a4c81de85db664d4ee674f7d47085e3b2d55dc"
@@ -1743,10 +1737,6 @@ hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
-hoist-non-react-statics@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
-
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -1909,10 +1899,6 @@ is-glob@^2.0.0, is-glob@^2.0.1:
   dependencies:
     is-extglob "^1.0.0"
 
-is-in-browser@^1.0.2:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/is-in-browser/-/is-in-browser-1.1.3.tgz#56ff4db683a078c6082eb95dad7dc62e1d04f835"
-
 is-number@^2.0.2, is-number@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-2.1.0.tgz#01fcbbb393463a548f2f466cce16dece49db908f"
@@ -2036,67 +2022,6 @@ jsprim@^1.2.2:
     extsprintf "1.0.2"
     json-schema "0.2.3"
     verror "1.3.6"
-
-jss-camel-case@^2.0.1:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/jss-camel-case/-/jss-camel-case-2.0.2.tgz#62776f1480c4a2d4270745ab6ec6cb9f29a1e4e5"
-
-jss-compose@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/jss-compose/-/jss-compose-1.1.0.tgz#e07e1c5dc881164ce261f4f2c3b53c755fa31ca4"
-  dependencies:
-    warning "^3.0.0"
-
-jss-default-unit@^4.1.0:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/jss-default-unit/-/jss-default-unit-4.1.4.tgz#57b9462981b5f299ecea608b84c7e6235614c1e7"
-
-jss-expand@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/jss-expand/-/jss-expand-1.6.0.tgz#a7b3eb0de911326eff8cecb6884b3662f405303b"
-
-jss-extend@^2.0.4:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/jss-extend/-/jss-extend-2.0.6.tgz#fc99e334b4e3feb96ce3382dcd22792ab00496b0"
-  dependencies:
-    warning "^3.0.0"
-
-jss-nested@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/jss-nested/-/jss-nested-2.5.0.tgz#d1a5ec778bcc3352616c8917abbed0b80ef1286f"
-  dependencies:
-    warning "^3.0.0"
-
-jss-preset-default@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/jss-preset-default/-/jss-preset-default-0.9.0.tgz#46644fe256ce6fa153a96230e2dfa4d32099f24f"
-  dependencies:
-    jss-camel-case "^2.0.1"
-    jss-compose "^1.1.0"
-    jss-default-unit "^4.1.0"
-    jss-expand "^1.6.0"
-    jss-extend "^2.0.4"
-    jss-nested "^2.5.0"
-    jss-props-sort "^2.0.0"
-    jss-vendor-prefixer "^3.0.0"
-
-jss-props-sort@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/jss-props-sort/-/jss-props-sort-2.0.2.tgz#ea74663d43970d68553008d7c3eb07859ef45ea1"
-
-jss-vendor-prefixer@^3.0.0:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/jss-vendor-prefixer/-/jss-vendor-prefixer-3.0.3.tgz#b36a9cb36273707595d8b60c84d07d60947e8254"
-  dependencies:
-    css-vendor "^0.3.8"
-
-jss@^5.5.6:
-  version "5.5.6"
-  resolved "https://registry.yarnpkg.com/jss/-/jss-5.5.6.tgz#30107928dc6f608f6b8e3e70e0577edc8a94e216"
-  dependencies:
-    is-in-browser "^1.0.2"
-    murmurhash-js "^1.0.0"
-    warning "^3.0.0"
 
 keycode@^2.1.2:
   version "2.1.8"
@@ -2428,10 +2353,6 @@ multipipe@^0.1.2:
   dependencies:
     duplexer2 "0.0.2"
 
-murmurhash-js@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/murmurhash-js/-/murmurhash-js-1.0.0.tgz#b06278e21fc6c37fa5313732b0412bcb6ae15f51"
-
 nan@^2.3.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
@@ -2754,12 +2675,9 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-addons-css-transition-group@^15.4.1:
-  version "15.5.2"
-  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.5.2.tgz#ea7e0a9f0e1c27ca426da4efd3559915bd42ead2"
-  dependencies:
-    fbjs "^0.8.4"
-    object-assign "^4.1.0"
+react-awesome-modal@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-awesome-modal/-/react-awesome-modal-2.0.1.tgz#51246812330337e094c588d990570c264818b0b8"
 
 react-bootstrap@0.30.7:
   version "0.30.7"
@@ -2793,18 +2711,6 @@ react-image-crop@1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/react-image-crop/-/react-image-crop-1.0.4.tgz#9100e3153de69a03ea0722a1d18865f12c2fc779"
 
-react-jss@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/react-jss/-/react-jss-4.2.0.tgz#5a300a98c095d946940682c09b7f223e01828541"
-  dependencies:
-    hoist-non-react-statics "^1.2.0"
-    jss "^5.5.6"
-    jss-preset-default "^0.9.0"
-
-react-minimalist-portal@^1.0.6:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/react-minimalist-portal/-/react-minimalist-portal-1.0.8.tgz#502501e293b0e3525ec607a486f897e1d53c0b69"
-
 react-overlays@^0.6.10:
   version "0.6.12"
   resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-0.6.12.tgz#a079c750cc429d7db4c7474a95b4b54033e255c3"
@@ -2819,15 +2725,6 @@ react-prop-types@^0.4.0:
   resolved "https://registry.yarnpkg.com/react-prop-types/-/react-prop-types-0.4.0.tgz#f99b0bfb4006929c9af2051e7c1414a5c75b93d0"
   dependencies:
     warning "^3.0.0"
-
-react-responsive-modal@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/react-responsive-modal/-/react-responsive-modal-1.4.2.tgz#a7e95993f1629bc163ff31e4e244f4447c3790a1"
-  dependencies:
-    classnames "^2.2.5"
-    react-addons-css-transition-group "^15.4.1"
-    react-jss "^4.2.0"
-    react-minimalist-portal "^1.0.6"
 
 react@15.4.2:
   version "15.4.2"

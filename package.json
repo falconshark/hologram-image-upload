@@ -29,10 +29,10 @@
     "webpack": "1.13.3"
   },
   "dependencies": {
+    "react-awesome-modal": "^2.0.1",
     "react-bootstrap": "0.30.7",
     "react-dropzone": "3.7.3",
     "react-image-crop": "1.0.4",
-    "react-responsive-modal": "^1.4.2",
     "superagent": "3.4.1"
   },
   "peerDependencies": {

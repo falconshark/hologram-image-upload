@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from 'react-responsive-modal';
+import Modal from 'react-awesome-modal';
 import CropperCom from "./Cropper";
 
 class ModalCom extends React.Component {
@@ -8,23 +8,23 @@ class ModalCom extends React.Component {
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.state = {
-            open: false
+            visible : false
         };
     }
 
     openModal() {
-        this.setState({open: true});
+        this.setState({visible : true});
     }
 
     closeModal() {
-        this.setState({open: false});
+        this.setState({visible : false});
     }
 
     render(){
         return (
             <div className="dropzone-image">
                 <img src={this.props.file['preview']} onClick={this.openModal.bind(this)}/>
-                <Modal open={this.state.open} onClose={() => this.closeModal()}>
+                <Modal visible={this.state.visible} onClickAway={() => this.closeModal()} width="400">
                     <CropperCom
                         config={this.props.cropperConfig}
                         src={this.props.file['origin']}
