@@ -21,7 +21,7 @@ class CropperCom extends React.Component {
         src={this.props.src}
         />
     <br></br>
-    <button className="hologram-btn" onClick={this.crop}>Save</button>
+    <button className="hologram-btn" type="button" onClick={this.crop}>Save</button>
     </div>);
   }
 
