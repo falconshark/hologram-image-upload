@@ -2,6 +2,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import ModalCom from "./Modal";
 import request from 'superagent';
+import PropTypes from 'prop-types';
 
 class Hologram extends React.Component {
     constructor(props) {
@@ -158,11 +159,11 @@ class Hologram extends React.Component {
 };
 
 static propTypes = {
-    cropperConfig: React.PropTypes.object,
-    dropzoneConfig: React.PropTypes.object,
-    maxFiles: React.PropTypes.number,
-    uploader: React.PropTypes.string.isRequired,
-    onComplete: React.PropTypes.func,
+  cropperConfig: PropTypes.object,
+  dropzoneConfig: PropTypes.object,
+  maxFiles: PropTypes.number,
+  uploader: PropTypes.string.isRequired,
+  onComplete: PropTypes.func,
 };
 
 static defaultProps = {
