@@ -1,5 +1,6 @@
 node_modules
 dist
+src/css/*.css
 sandbox/public/css
 sandbox/public/js
 package-lock.json
