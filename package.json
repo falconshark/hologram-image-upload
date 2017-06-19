@@ -25,7 +25,6 @@
     "gulp-concat-css": "^2.3.0",
     "gulp-copy": "^1.0.0",
     "gulp-util": "3.0.7",
-    "prop-types": "^15.5.10",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.2.0",
@@ -36,6 +35,7 @@
     "webpack": "1.13.3"
   },
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react-awesome-modal": "^2.0.1",
     "react-dropzone": "3.7.3",
     "react-icons": "^2.2.5",
