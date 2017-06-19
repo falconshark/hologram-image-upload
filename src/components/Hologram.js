@@ -18,6 +18,12 @@ class Hologram extends React.Component {
         });
     }
 
+    removeFile(file) {
+      const newList = this.state.files.filter((mFile) => file !== mFile)
+      this.setState({
+        files: newList
+      })
+    }
     //Convert Image to Data URL
 
     convert(file){
@@ -148,6 +154,7 @@ class Hologram extends React.Component {
                                     <ModalCom
                                         key={file.key}
                                         file={file}
+                                        removeFile={this.removeFile.bind(this)}
                                         cropperConfig={this.props.cropperConfig}
                                         cropperUpdate={this.onUpdate.bind(this)}/>
                                 )}

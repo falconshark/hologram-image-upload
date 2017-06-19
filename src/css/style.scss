@@ -38,6 +38,13 @@
         border-style: dashed dashed dashed dashed;
         overflow: hidden;
 
+        svg{
+          position: relative;
+          top: -194px;
+          left: 84px;
+          font-size: 24px;
+        }
+
         img{
             overflow: hidden;
             width:100%;
