@@ -1,73 +1,93 @@
+/* eslint
+react/forbid-prop-types: 'warn',
+no-restricted-syntax: 'warn'
+*/
+
 import React from 'react';
 import ReactCrop from 'react-image-crop';
+import PropTypes from 'prop-types';
 
 class CropperCom extends React.Component {
+  static propTypes = {
+    config: PropTypes.object,
+    file: PropTypes.object,
+    closeModal: PropTypes.func,
+    onUpdate: PropTypes.func,
+    src: PropTypes.src,
+  };
+
+  static defaultProps = {
+    config: {},
+    file: {},
+    closeModal: () => {},
+    onUpdate: () => {},
+    src: '',
+  };
+
   constructor(props) {
     super(props);
     this.onImageLoaded = this.onImageLoaded.bind(this);
     this.onComplete = this.onComplete.bind(this);
     this.crop = this.crop.bind(this);
     this.state = {
-      originImage: {}
+      originImage: {},
     };
   }
 
-  render(){
-    return (<div className="text-center">
-      <ReactCrop
-        {...this.props.config}
-        onImageLoaded={this.onImageLoaded}
-        onComplete={this.onComplete}
-        src={this.props.src}
-        />
-    <br></br>
-    <button className="hologram-btn" type="button" onClick={this.crop}>Save</button>
-    </div>);
+  onImageLoaded(crop, image) {
+    this.setState({ originImage: image });
   }
 
-  crop(){
-    if(this.state.croppedImage){
-      this.props.file['preview'] = this.state.croppedImage;
-  }else{
-      this.props.file['preview'] = this.props.file['origin'];
-  }
+  onComplete(crop) {
+    const component = this;
+    const originImage = this.state.originImage;
+    const imageWidth = originImage.naturalWidth;
+    const imageHeight = originImage.naturalHeight;
 
-    this.props.closeModal();
-    this.props.onUpdate(this.props.file);
-  }
+    // Use canvas to create a cropped version of image
 
-  onImageLoaded(crop, image, pixelCrop){
-    this.setState({originImage: image});
-  }
+    if (crop.width || crop.height) {
+      const cropX = (crop.x / 100) * imageWidth;
+      const cropY = (crop.y / 100) * imageHeight;
 
-  onComplete(crop, pixelCrop) {
-    var component = this;
-    var originImage = this.state.originImage;
-    var imageWidth =  originImage.naturalWidth;
-    var imageHeight = originImage.naturalHeight;
+      const cropWidth = (crop.width / 100) * imageWidth;
+      const cropHeight = (crop.height / 100) * imageHeight;
 
-    //Use canvas to create a cropped version of image
-
-    if(crop.width || crop.height){
-      var cropX = (crop.x / 100) * imageWidth;
-      var cropY = (crop.y / 100) * imageHeight;
-
-      var cropWidth = (crop.width / 100) * imageWidth;
-      var cropHeight = (crop.height / 100) * imageHeight;
-
-      var canvas = document.createElement('canvas');
+      const canvas = document.createElement('canvas');
       canvas.width = cropWidth;
       canvas.height = cropHeight;
-      var ctx = canvas.getContext('2d');
 
+      const ctx = canvas.getContext('2d');
       ctx.drawImage(originImage, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
-
-      canvas.toBlob(function(blob){
-        var croppedImage = URL.createObjectURL(blob);
-        component.setState({croppedImage: croppedImage});
+      canvas.toBlob((blob) => {
+        const croppedImage = URL.createObjectURL(blob);
+        component.setState({ croppedImage });
       }, 'image/jpeg');
     }
   }
+  crop() {
+    if (this.state.croppedImage) {
+      this.props.file.preview = this.state.croppedImage;
+    } else {
+      this.props.file.preview = this.props.file.origin;
+    }
+    this.props.closeModal();
+    this.props.onUpdate(this.props.file);
+  }
+  render() {
+    return (
+      <div className="text-center">
+        <ReactCrop
+          {...this.props.config}
+          onImageLoaded={this.onImageLoaded}
+          onComplete={this.onComplete}
+          src={this.props.src}
+        />
+        <br /><br />
+        <button className="hologram-btn" type="button" onClick={this.crop}>Save</button>
+      </div>
+    );
+  }
 }
 
-export default CropperCom
+export default CropperCom;
