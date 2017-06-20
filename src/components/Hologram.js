@@ -1,60 +1,123 @@
+/* eslint
+react/forbid-prop-types: 'warn',
+no-restricted-syntax: 'warn'
+*/
 import React from 'react';
 import request from 'superagent';
 import Dropzone from 'react-dropzone';
 import PropTypes from 'prop-types';
 import ModalCom from './Modal';
 
+function convert(file) {
+  return new Promise((resolve) => {
+    const image = new Image();
+    const canvas = document.createElement('canvas');
+    const canvasContext = canvas.getContext('2d');
+
+    image.src = file.preview;
+    image.crossOrigin = 'anonymous';
+    image.onload = function () {
+      canvas.width = image.width;
+      canvas.height = image.height;
+      canvasContext.drawImage(image, 0, 0, image.width, image.height);
+
+      const dataUrl = canvas.toDataURL();
+
+      const newFile = {
+        name: file.name,
+        key: file.key,
+        size: file.size,
+        preview: dataUrl,
+        type: file.type,
+      };
+      resolve(newFile);
+    };
+  });
+}
+
 class Hologram extends React.Component {
+  static propTypes = {
+    cropperConfig: PropTypes.object,
+    dropzoneConfig: PropTypes.object,
+    maxFiles: PropTypes.number,
+    uploader: PropTypes.string.isRequired,
+    onComplete: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onComplete: () => {},
+    maxFiles: 10,
+    cropperConfig: {},
+    dropzoneConfig: {
+      style: {
+        width: '100%',
+        padding: '2.5em 0',
+        background: 'rgba(0,0,0,0.5)',
+        textAlign: 'center',
+        color: '#fff',
+      },
+    },
+  }
   constructor(props) {
     super(props);
     this.state = {
       files: [],
     };
+    this.onOpenZone = this.onOpenZone.bind(this);
+    this.onUpload = this.onUpload.bind(this);
+    this.onDrop = this.onDrop.bind(this);
+  }
+
+  onOpenClick() {
+    this.dropzone.open();
+  }
+  onDrop(acceptedFiles) {
+    const files = this.state.files;
+
+    for (const acceptedFile of acceptedFiles) {
+      const file = {
+        name: acceptedFile.name,
+        key: Math.random().toString(36).substring(1),
+        size: acceptedFile.size,
+        preview: acceptedFile.preview,
+        origin: acceptedFile.preview,
+        type: acceptedFile.type,
+      };
+
+      if (files.length < this.props.maxFiles) {
+        files.push(file);
+      } else {
+        break;
+      }
+    }
+
+    this.setState({ files });
+  }
+  onUpdate(updateFile) {
+    const files = this.state.files;
+    const fileIndex = files.findIndex((file => file.key === updateFile.key));
+    files[fileIndex] = updateFile;
+    this.setState({ files });
+  }
+  // Open dropzone without click dropzone
+  onOpenZone() {
+    this.dropzone.open();
   }
   removeFile(file) {
-    const newList = this.state.files.filter((mFile) => file !== mFile)
+    const newList = this.state.files.filter(mFile => file !== mFile);
     this.setState({
       files: newList,
     });
   }
-  // Convert Image to Data URL
-  convert(file){
-    return new Promise(function(resolve){
-      const image = new Image();
-      const canvas = document.createElement('canvas');
-      const canvasContext = canvas.getContext('2d');
 
-      image.src = file.preview;
-      image.crossOrigin = 'anonymous';
-      image.onload = function () {
-        canvas.width = image.width;
-        canvas.height = image.height;
-        canvasContext.drawImage(image, 0, 0, image.width, image.height);
-
-        const dataUrl = canvas.toDataURL();
-
-        const newFile = {
-          name: file.name,
-          key: file.key,
-          size: file.size,
-          preview: dataUrl,
-          type: file.type,
-        };
-        resolve(newFile);
-      };
-    });
-  }
-
-  //Upload file to upload hanlder by superagent
-
-  upload(file){
-    const convert = this.convert;
+  // Upload file to upload hanlder by superagent
+  upload(file) {
     const uploader = this.props.uploader;
-    return new Promise(function(resolve, reject){
+    return new Promise(function (resolve, reject){
       convert(file)
-      .then(file =>{
-        const data = JSON.stringify(file);
-        const req = request.post(uploader).send(data).end(function(err, res){
+      .then((newFile) => {
+        const data = JSON.stringify(newFile);
+        request.post(uploader).send(data).end(function(err, res){
           if (err) {
             reject(err);
             return;
@@ -65,61 +128,21 @@ class Hologram extends React.Component {
     });
   }
 
-  onOpenClick() {
-    this.dropzone.open();
-  }
-
-  onDrop(acceptedFiles) {
-    var files = this.state.files;
-
-    for(let acceptedFile of acceptedFiles){
-      let file = {
-        'name': acceptedFile['name'],
-        'key': Math.random().toString(36).substring(1),
-        'size': acceptedFile['size'],
-        'preview': acceptedFile['preview'],
-        'origin': acceptedFile['preview'],
-        'type': acceptedFile['type']
-      }
-
-      if(files.length < this.props.maxFiles){
-        files.push(file);
-      }else{
-        break;
-      }
-    }
-
-    this.setState({
-      files: files
-    });
-  }
-
-  onUpdate(updateFile){
-    var files = this.state.files;
-    var fileIndex = files.findIndex((file => file.key === updateFile.key));
-    files[fileIndex] = updateFile;
-    this.setState({
-      files: files
-    });
-  }
-
-  //Open dropzone without click dropzone
-
-  onOpenClick() {
-    this.dropzone.open();
-  }
-
   render() {
     return (
       <div className="dropzone">
-        <Dropzone {... this.props.dropzoneConfig} accept={'image/*'}
-          ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop.bind(this)}
+        <Dropzone
+          {... this.props.dropzoneConfig}
+          accept={'image/*'
+          }
+          ref={(node) => { this.dropzone = node; }}
+          onDrop={this.onDrop}
           disableClick={true}>
           <div>Drop images here to upload them.</div>
           {this.state.files.length > 0 ?
             <div className="image-wrapper">
-              <button className="hologram-btn" type="button" onClick={this.onOpenClick.bind(this)}>Open Dropzone</button>
-              <button className="hologram-btn" type="button" onClick={this.onUpload.bind(this)}>Upload</button>
+              <button className="hologram-btn" type="button" onClick={this.onOpenZone}>Open Dropzone</button>
+              <button className="hologram-btn" type="button" onClick={this.onUpload}>Upload</button>
               <p className="help-block">Click Image to crop it.</p>
               {this.state.files.map((file) =>
                 <ModalCom
@@ -134,28 +157,6 @@ class Hologram extends React.Component {
         </Dropzone>
       </div>
     );
-  };
-
-  static propTypes = {
-    cropperConfig: PropTypes.object,
-    dropzoneConfig: PropTypes.object,
-    maxFiles: PropTypes.number,
-    uploader: PropTypes.string.isRequired,
-    onComplete: PropTypes.func,
-  };
-
-  static defaultProps = {
-    onComplete: () => {},
-    maxFiles: 10,
-    dropzoneConfig: {
-      style: {
-        width: '100%',
-        padding: '2.5em 0',
-        background: 'rgba(0,0,0,0.5)',
-        textAlign: 'center',
-        color: '#fff',
-      },
-    },
   }
 
   // Upload converted file by JSON format to server
@@ -163,16 +164,16 @@ class Hologram extends React.Component {
     const files = this.state.files;
     const funList = [];
     const uploadedFile = [];
-    for (let file of files){
+    for (const file of files){
       funList.push(this.upload(file));
-      uploadedFile.push({'key': file['key'], 'name': file['name']});
+      uploadedFile.push({ key: file.key, name: file.name });
     }
 
     Promise.all(funList)
-    .then(res => {
-      this.props.onComplete({'response': res, 'files': uploadedFile});
+    .then((res) => {
+      this.props.onComplete({ response: res, files: uploadedFile });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
   }
