@@ -13,7 +13,7 @@ class CropperCom extends React.Component {
     file: PropTypes.object,
     closeModal: PropTypes.func,
     onUpdate: PropTypes.func,
-    src: PropTypes.src,
+    src: PropTypes.string,
   };
 
   static defaultProps = {
