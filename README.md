@@ -32,8 +32,8 @@ After version 2.0, you will not need require css file of react crop and bootstra
 
 ## Props
 
-#### uploader (required)
-The post url of your upload handler.
+#### uploader (optional)
+The post url of your upload handler. You need to pass this prop or a custom upload function for everything to work.
 
 ```jsx
 <Hologram uploader="upload.php"/>
@@ -45,6 +45,26 @@ If files more than this number, it will not be uploaded.  Default Number is 10.
 ```js
 var maxFiles = 10;
 <Hologram uploader="upload.php" maxFiles={maxFiles}/>
+```
+
+#### Custom Upload Function (optional)
+If you want, you can pass in your custom upload function as a prop. This function MUST return a promise.
+
+
+```jsx
+myUploadFunc(file) {
+  return new Promise((resolve, reject) => {
+    // FANCY TASKS HERE
+    // do this and this and this
+    // END OF FANCY TASKS
+    request.post(FANCY_URL).send(FANCY_FILE).end((err, res) =>{
+      if (err) return reject(err)
+      resolve(res)
+    });
+  });
+}
+
+<Hologram uploadFunction={this.myUploadFunc.bind(this)} ></Hologram>
 ```
 
 #### dropzoneConfig (optional)

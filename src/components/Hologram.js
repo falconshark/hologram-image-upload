@@ -42,8 +42,9 @@ class Hologram extends React.Component {
     cropperConfig: PropTypes.object,
     dropzoneConfig: PropTypes.object,
     maxFiles: PropTypes.number,
-    uploader: PropTypes.string.isRequired,
+    uploader: PropTypes.string,
     onComplete: PropTypes.func,
+    uploadFunction: PropTypes.func
   };
 
   static defaultProps = {
@@ -111,7 +112,11 @@ class Hologram extends React.Component {
     const funList = [];
     const uploadedFile = [];
     for (const file of files) {
-      funList.push(this.upload(file));
+      if (this.props.uploadFunction) {
+        funList.push(this.customUpload(file));
+      } else {
+        funList.push(this.upload(file));
+      }
       uploadedFile.push({ key: file.key, name: file.name });
     }
 
@@ -149,6 +154,21 @@ class Hologram extends React.Component {
           }
           resolve(res);
         });
+      });
+    });
+  }
+
+  customUpload(file) {
+    const uploaderFunc = this.props.uploadFunction;
+    return new Promise((resolve, reject) => {
+      convert(file)
+      .then((newFile) => {
+        const data = JSON.stringify(newFile);
+        uploaderFunc(file)
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => reject(err))
       });
     });
   }
