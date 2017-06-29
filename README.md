@@ -48,16 +48,16 @@ var maxFiles = 10;
 ```
 
 #### Custom Upload Function (optional)
-If you want, you can pass in your custom upload function as a prop. This function MUST return a promise.
+If you want, you can pass in your custom upload function as a prop. The function takes two arguments: The file information and the actual file data. This function MUST return a promise
 
 
 ```jsx
-myUploadFunc(file) {
+myUploadFunc(file, data) {
   return new Promise((resolve, reject) => {
     // FANCY TASKS HERE
     // do this and this and this
     // END OF FANCY TASKS
-    request.post(FANCY_URL).send(FANCY_FILE).end((err, res) =>{
+    request.post(FANCY_URL).send(MY_FANCY_DATA).end((err, res) =>{
       if (err) return reject(err)
       resolve(res)
     });
