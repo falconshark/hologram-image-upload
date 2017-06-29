@@ -42,6 +42,7 @@ gulp.task('build:js', function () {
 });
 
 gulp.task('build', [
+  'build:scss',
   'build:css',
   'build:js']
 );
