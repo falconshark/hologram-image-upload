@@ -7,14 +7,15 @@ var webpack = require('webpack');
 var webpackCfg = require('./webpack.config.js');
 
 gulp.task('watch', function () {
-    gulp.watch('../src/css/*.scss', ['build:scss']);
     gulp.watch('../src/**/*.js', ['build:js']);
+    gulp.watch('../src/css/*.scss', ['build:scss']);
     gulp.watch('../src/css/*.css', ['build:css']);
 });
 
 gulp.task('build:scss', function() {
   return gulp.src('./src/css/*.scss')
   .pipe(sass().on('error', sass.logError));
+  .pipe(gulp.dest('./src/css'));
 });
 
 gulp.task('build:css', function(){
