@@ -163,10 +163,9 @@ class Hologram extends React.Component {
     return new Promise((resolve, reject) => {
       convert(file)
       .then((newFile) => {
-        const data = JSON.stringify(newFile);
-        uploaderFunc(file)
+        uploaderFunc(file, newFile)
           .then(res => {
-            console.log(res)
+            resolve(res)
           })
           .catch(err => reject(err))
       });
