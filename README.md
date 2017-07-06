@@ -40,7 +40,7 @@ The post url of your upload handler. You need to pass this prop or a custom uplo
 ```
 
 #### maxFiles (optional)
-If files more than this number, it will not be uploaded.  Default Number is 10.
+If files more than this number, it will not be uploaded. However, if number is -1, user will be allow to upload unlimited number of image. Default Number is -1.
 
 ```js
 var maxFiles = 10;
