@@ -44,14 +44,17 @@ class Hologram extends React.Component {
     maxFiles: PropTypes.number,
     uploader: PropTypes.string,
     onComplete: PropTypes.func,
-    uploadFunction: PropTypes.func
+    uploadFunction: PropTypes.func,
   };
 
   static defaultProps = {
     onComplete: () => {},
+    uploadFunction: null,
     maxFiles: 10,
+    uploader: '',
     cropperConfig: {},
     dropzoneConfig: {
+      accept: 'image/*',
       style: {
         width: '100%',
         padding: '2.5em 0',
@@ -177,8 +180,6 @@ class Hologram extends React.Component {
       <div className="dropzone">
         <Dropzone
           {... this.props.dropzoneConfig}
-          accept={'image/*'
-          }
           ref={(node) => { this.dropzone = node; }}
           onDrop={this.onDrop}
           disableClick={disableClick}
