@@ -52,7 +52,7 @@ class ModalCom extends React.Component {
       <div className="dropzone-image">
         <img alt="file preview" src={this.props.file.preview} onClick={this.onOpenModal} />
         <FaTimesCircle className="remove-icon" onClick={() => this.handleClick()} />
-        <Modal open={this.state.open} onClose={() => this.onCloseModal()}>
+        <Modal little={true} modalClassName="hologram-modal" open={this.state.open} onClose={() => this.onCloseModal()}>
           <CropperCom
             config={this.props.cropperConfig}
             src={this.props.file.origin}
