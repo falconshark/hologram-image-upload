@@ -167,10 +167,10 @@ class Hologram extends React.Component {
       convert(file)
       .then((newFile) => {
         uploaderFunc(file, newFile)
-          .then(res => {
-            resolve(res)
+          .then((res) => {
+            resolve(res);
           })
-          .catch(err => reject(err))
+          .catch(err => reject(err));
       });
     });
   }
