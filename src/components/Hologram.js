@@ -50,7 +50,7 @@ class Hologram extends React.Component {
   static defaultProps = {
     onComplete: () => {},
     uploadFunction: null,
-    maxFiles: 10,
+    maxFiles: -1,
     uploader: '',
     cropperConfig: {},
     dropzoneConfig: {
@@ -93,7 +93,7 @@ class Hologram extends React.Component {
         type: acceptedFile.type,
       };
 
-      if (files.length < this.props.maxFiles) {
+      if (files.length < this.props.maxFiles || this.props.maxFiles === -1) {
         files.push(file);
       } else {
         break;
