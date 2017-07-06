@@ -5,7 +5,7 @@ jsx-a11y/no-noninteractive-element-interactions: 'off'
 */
 
 import React from 'react';
-import Modal from 'react-awesome-modal';
+import Modal from 'react-responsive-modal';
 import PropTypes from 'prop-types';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import CropperCom from './Cropper';
@@ -27,20 +27,20 @@ class ModalCom extends React.Component {
 
   constructor(props) {
     super(props);
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+    this.onOpenModal = this.onOpenModal.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
-      visible: false,
+      open: false,
     };
   }
 
-  openModal() {
-    this.setState({ visible: true });
+  onOpenModal() {
+    this.setState({ open: true });
   }
 
-  closeModal() {
-    this.setState({ visible: false });
+  onCloseModal() {
+    this.setState({ open: false });
   }
 
   handleClick() {
@@ -50,15 +50,15 @@ class ModalCom extends React.Component {
   render() {
     return (
       <div className="dropzone-image">
-        <img alt="file preview" src={this.props.file.preview} onClick={this.openModal} />
+        <img alt="file preview" src={this.props.file.preview} onClick={this.onOpenModal} />
         <FaTimesCircle className="remove-icon" onClick={() => this.handleClick()} />
-        <Modal visible={this.state.visible} onClickAway={() => this.closeModal()} width="400">
+        <Modal open={this.state.open} onClose={() => this.onCloseModal()}>
           <CropperCom
             config={this.props.cropperConfig}
             src={this.props.file.origin}
             file={this.props.file}
             onUpdate={this.props.cropperUpdate}
-            closeModal={this.closeModal}
+            closeModal={this.onCloseModal}
           />
         </Modal>
       </div>

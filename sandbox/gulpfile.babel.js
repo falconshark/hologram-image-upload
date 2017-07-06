@@ -1,36 +1,40 @@
 import gulp from 'gulp';
+var sass = require('gulp-sass');
+var concatCss = require('gulp-concat-css');
+var cleanCSS = require('gulp-clean-css');
 var gutil = require('gulp-util');
 var webpack = require('webpack');
 var webpackCfg = require('./webpack.config.js');
 
 gulp.task('watch', function () {
-    gulp.watch('../src/**/*.js', ['build:js']);
-    gulp.watch('../src/css/*.scss', ['build:scss']);
-    gulp.watch('../src/css/*.css', ['build:css']);
+  gulp.watch('../src/**/*.js', ['build:js']);
+  gulp.watch('../src/css/*.scss', ['build:scss']);
+  gulp.watch('../src/css/*.css', ['build:css']);
 });
 
 gulp.task('build:scss', function() {
-  return gulp.src('./src/css/*.scss')
+  return gulp.src('../src/css/*.scss')
   .pipe(sass().on('error', sass.logError))
-  .pipe(gulp.dest('./src/css'));
+  .pipe(gulp.dest('../src/css'));
 });
 
 gulp.task('build:css', function(){
   return gulp.src(
-    ['./node_modules/react-image-crop/dist/ReactCrop.css',
-    './src/css/*.css'
+    ['../src/css/*.css',
+    '../node_modules/react-image-crop/dist/ReactCrop.css'
   ]
-)
+)});
+
 gulp.task('build:js', function () {
-    // run webpack
-    webpack(webpackCfg, function(err, stats) {
-        if(err) throw new gutil.PluginError('webpack', err);
-        gutil.log('[webpack]', stats.toString({
-            // output options
-        }));
-        //callback();
-    });
-    console.log('build');
+  // run webpack
+  webpack(webpackCfg, function(err, stats) {
+    if(err) throw new gutil.PluginError('webpack', err);
+    gutil.log('[webpack]', stats.toString({
+      // output options
+    }));
+    //callback();
+  });
+  console.log('build');
 });
 
 gulp.task('build', [
