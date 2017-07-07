@@ -30,6 +30,7 @@ class CropperCom extends React.Component {
     this.onComplete = this.onComplete.bind(this);
     this.crop = this.crop.bind(this);
     this.state = {
+      crop: this.props.config.crop,
       originImage: {},
     };
   }
@@ -41,7 +42,7 @@ class CropperCom extends React.Component {
   onComplete(crop) {
     const component = this;
     const originImage = this.state.originImage;
-    this.props.config.crop = crop;
+    this.setState({ crop });
     const imageWidth = originImage.naturalWidth;
     const imageHeight = originImage.naturalHeight;
 
@@ -80,6 +81,7 @@ class CropperCom extends React.Component {
       <div className="text-center">
         <ReactCrop
           {...this.props.config}
+          crop={this.state.crop}
           onImageLoaded={this.onImageLoaded}
           onComplete={this.onComplete}
           src={this.props.src}
