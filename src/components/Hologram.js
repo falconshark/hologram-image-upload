@@ -189,7 +189,7 @@ class Hologram extends React.Component {
             <div className="image-wrapper">
               <button className="hologram-btn" type="button" onClick={this.onOpenZone}>Open Dropzone</button>
               <button className="hologram-btn" type="button" onClick={this.onUpload}>Upload</button>
-              <p className="help-block">Click Image to crop it.</p>
+              <p className="help">Click Image to crop it.</p>
               {this.state.files.map(file => (
                 <ModalCom
                   key={file.key}
