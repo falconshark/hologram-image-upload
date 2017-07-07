@@ -41,6 +41,7 @@ class CropperCom extends React.Component {
   onComplete(crop) {
     const component = this;
     const originImage = this.state.originImage;
+    this.props.config.crop = crop;
     const imageWidth = originImage.naturalWidth;
     const imageHeight = originImage.naturalHeight;
 
