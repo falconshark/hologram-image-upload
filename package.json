@@ -1,6 +1,6 @@
 {
   "name": "hologram-image-upload",
-  "version": "2.3.6",
+  "version": "2.3.7",
   "author": "Mr.Twister<sardo.ip@sardo.work>",
   "license": "MIT",
   "description": "React image uploader with dropzone and cropper function",
@@ -37,10 +37,9 @@
   },
   "dependencies": {
     "prop-types": "^15.5.10",
-    "react-awesome-modal": "^2.0.1",
     "react-dropzone": "3.7.3",
     "react-icons": "^2.2.5",
-    "react-image-crop": "1.0.4",
+    "react-image-crop": "2.0.5",
     "react-responsive-modal": "^1.6.1",
     "superagent": "3.4.1"
   },
