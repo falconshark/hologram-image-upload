@@ -7,6 +7,7 @@ import request from 'superagent';
 import Dropzone from 'react-dropzone';
 import PropTypes from 'prop-types';
 import ModalCom from './Modal';
+import LoadModalCom from './LoadModal';
 
 const disableClick = true;
 
@@ -68,6 +69,8 @@ class Hologram extends React.Component {
     super(props);
     this.state = {
       files: [],
+      uploading: false,
+      error: {},
     };
     this.onOpenZone = this.onOpenZone.bind(this);
     this.onUpload = this.onUpload.bind(this);
@@ -111,6 +114,7 @@ class Hologram extends React.Component {
 
   // Upload converted file by JSON format to server
   onUpload() {
+    this.setState({ uploading: true });
     const files = this.state.files;
     const funList = [];
     const uploadedFile = [];
@@ -125,10 +129,11 @@ class Hologram extends React.Component {
 
     Promise.all(funList)
     .then((res) => {
+      this.setState({ uploading: false, files: [] });
       this.props.onComplete({ response: res, files: uploadedFile });
     })
     .catch((err) => {
-      console.log(err);
+      this.setState({ error: err });
     });
   }
 
@@ -177,31 +182,39 @@ class Hologram extends React.Component {
 
   render() {
     return (
-      <div className="dropzone">
-        <Dropzone
-          {... this.props.dropzoneConfig}
-          ref={(node) => { this.dropzone = node; }}
-          onDrop={this.onDrop}
-          disableClick={disableClick}
-        >
-          <div>Drop images here to upload them.</div>
-          {this.state.files.length > 0 ?
-            <div className="image-wrapper">
-              <button className="hologram-btn" type="button" onClick={this.onOpenZone}>Open Dropzone</button>
-              <button className="hologram-btn" type="button" onClick={this.onUpload}>Upload</button>
-              <p className="help">Click Image to crop it.</p>
-              {this.state.files.map(file => (
-                <ModalCom
-                  key={file.key}
-                  file={file}
-                  removeFile={this.removeFile}
-                  cropperConfig={this.props.cropperConfig}
-                  cropperUpdate={this.onUpdate}
-                />
-              ))}
-            </div> : <button className="hologram-btn" type="button" onClick={this.onOpenClick}>Open Dropzone</button>
-          }
-        </Dropzone>
+      <div className="dropzone-wrapper">
+        <LoadModalCom
+          uploading={this.state.uploading}
+          error={this.state.error}
+        />
+        <div className="dropzone">
+          <Dropzone
+            {... this.props.dropzoneConfig}
+            ref={(node) => { this.dropzone = node; }}
+            onDrop={this.onDrop}
+            disableClick={disableClick}
+          >
+            <div>Drop images here to upload them.</div>
+            {this.state.files.length > 0 ?
+              <div className="image-wrapper">
+                { this.state.files.length < this.props.maxFiles || this.props.maxFiles === -1 ?
+                  <button className="hologram-btn" type="button" onClick={this.onOpenZone}>Open Dropzone</button>
+                  : null }
+                <button className="hologram-btn" type="button" onClick={this.onUpload}>Upload</button>
+                <p className="help">Click Image to crop it.</p>
+                {this.state.files.map(file => (
+                  <ModalCom
+                    key={file.key}
+                    file={file}
+                    removeFile={this.removeFile}
+                    cropperConfig={this.props.cropperConfig}
+                    cropperUpdate={this.onUpdate}
+                  />
+                  ))}
+              </div> : <button className="hologram-btn" type="button" onClick={this.onOpenClick}>Open Dropzone</button>
+              }
+          </Dropzone>
+        </div>
       </div>
     );
   }

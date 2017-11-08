@@ -31,6 +31,7 @@ class ModalCom extends React.Component {
     this.onCloseModal = this.onCloseModal.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
+      modalLittle: true,
       open: false,
     };
   }
@@ -52,7 +53,7 @@ class ModalCom extends React.Component {
       <div className="dropzone-image">
         <img alt="file preview" src={this.props.file.preview} onClick={this.onOpenModal} />
         <FaTimesCircle className="remove-icon" onClick={() => this.handleClick()} />
-        <Modal little={true} modalClassName="hologram-modal" open={this.state.open} onClose={() => this.onCloseModal()}>
+        <Modal little={this.state.modalLittle} modalClassName="hologram-modal" open={this.state.open} onClose={() => this.onCloseModal()}>
           <CropperCom
             config={this.props.cropperConfig}
             src={this.props.file.origin}

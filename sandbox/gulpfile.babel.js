@@ -1,6 +1,5 @@
 import gulp from 'gulp';
 var sass = require('gulp-sass');
-var concatCss = require('gulp-concat-css');
 var cleanCSS = require('gulp-clean-css');
 var gutil = require('gulp-util');
 var webpack = require('webpack');
@@ -15,15 +14,14 @@ gulp.task('watch', function () {
 gulp.task('build:scss', function() {
   return gulp.src('../src/css/*.scss')
   .pipe(sass().on('error', sass.logError))
-  .pipe(gulp.dest('../src/css'));
 });
 
 gulp.task('build:css', function(){
-  return gulp.src(
-    ['../src/css/*.css',
-    '../node_modules/react-image-crop/dist/ReactCrop.css'
-  ]
-)});
+    return gulp.src('../src/css/*.css')
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('../dist/css/'))
+});
+
 
 gulp.task('build:js', function () {
   // run webpack
@@ -39,7 +37,6 @@ gulp.task('build:js', function () {
 
 gulp.task('build', [
   'build:scss',
-  'build:css',
   'build:js']
 );
 
