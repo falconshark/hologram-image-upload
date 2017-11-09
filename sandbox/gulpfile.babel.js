@@ -22,6 +22,11 @@ gulp.task('build:css', function(){
     .pipe(gulp.dest('../dist/css/'))
 });
 
+gulp.task('copy:css', function(){
+    return gulp.src('../dist/css/*.css')
+    .pipe(gulp.dest('./public/css'))
+});
+
 
 gulp.task('build:js', function () {
   // run webpack
@@ -37,6 +42,8 @@ gulp.task('build:js', function () {
 
 gulp.task('build', [
   'build:scss',
+  'build:css',
+  'copy:css',
   'build:js']
 );
 
