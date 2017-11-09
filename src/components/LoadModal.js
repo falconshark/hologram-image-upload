@@ -29,8 +29,16 @@ class LoadModalCom extends React.Component {
     };
   }
 
+  componentWillReceiveProps(prevProps) {
+    if (prevProps.uploading === true) {
+      this.setState({ open: true });
+    } else {
+      this.setState({ open: false });
+    }
+  }
+
   onCloseModal() {
-    this.props.uploading = false;
+    this.setState({ open: false });
   }
 
   render() {
@@ -39,13 +47,13 @@ class LoadModalCom extends React.Component {
         <Modal
           little={this.state.modalLittle}
           modalClassName="loading-modal"
-          open={this.props.uploading}
+          open={this.state.open}
           showCloseIcon={false}
           onClose={() => this.onCloseModal()}
         >
           {Object.keys(this.props.error).length === 0 ?
             <div className="message">
-              <ReactLoading type={'spin'} color={'#000000'} delay={'10'} className={'loading-icon'} />
+              <ReactLoading type={'spin'} color={'#000000'} delay={10} className={'loading-icon'} />
               <p>Images uploading, please wait.....</p>
             </div> :
             <div className="message">
