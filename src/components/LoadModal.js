@@ -12,11 +12,9 @@ import PropTypes from 'prop-types';
 class LoadModalCom extends React.Component {
   static propTypes = {
     uploading: PropTypes.bool,
-    error: PropTypes.object,
   };
 
   static defaultProps = {
-    error: {},
     uploading: false,
   };
 
@@ -51,16 +49,10 @@ class LoadModalCom extends React.Component {
           showCloseIcon={false}
           onClose={() => this.onCloseModal()}
         >
-          {Object.keys(this.props.error).length === 0 ?
-            <div className="message">
-              <ReactLoading type={'spin'} color={'#000000'} delay={10} className={'loading-icon'} />
-              <p>Images uploading, please wait.....</p>
-            </div> :
-            <div className="message">
-              <p>Oh, Look like there are some error ! </p>
-              <p>Error message: {this.props.error.message}</p>
-            </div>
-          }
+          <div className="message">
+            <ReactLoading type={'spin'} color={'#000000'} delay={10} className={'loading-icon'} />
+            <p>Images uploading, please wait.....</p>
+          </div>
         </Modal>
       </div>
     );

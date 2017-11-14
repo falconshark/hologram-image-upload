@@ -129,11 +129,12 @@ class Hologram extends React.Component {
 
     Promise.all(funList)
     .then((res) => {
-      this.setState({ uploading: false, files: [] });
+      this.setState({ uploading: false });
       this.props.onComplete({ response: res, files: uploadedFile });
     })
     .catch((err) => {
-      this.setState({ error: err });
+      console.log('There are some error!', err);
+      this.setState({ uploading: false });
     });
   }
 
@@ -185,7 +186,6 @@ class Hologram extends React.Component {
       <div className="dropzone-wrapper">
         <LoadModalCom
           uploading={this.state.uploading}
-          error={this.state.error}
         />
         <div className="dropzone">
           <Dropzone
