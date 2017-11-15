@@ -16,7 +16,6 @@ function convert(file) {
     const image = new Image();
     const canvas = document.createElement('canvas');
     const canvasContext = canvas.getContext('2d');
-
     image.src = file.preview;
     image.crossOrigin = 'anonymous';
     image.onload = function () {
@@ -24,7 +23,7 @@ function convert(file) {
       canvas.height = image.height;
       canvasContext.drawImage(image, 0, 0, image.width, image.height);
 
-      const dataUrl = canvas.toDataURL();
+      const dataUrl = canvas.toDataURL(file.type);
 
       const newFile = {
         name: file.name,
