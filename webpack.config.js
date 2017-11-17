@@ -15,11 +15,26 @@ module.exports = {
     'object-assign': 'object-assign',
   },
   module: {
-    loaders: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-    }]
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+        },
+        {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          use: [
+            {
+                loader: "style-loader"
+            }, {
+                loader: "css-loader"
+            }, {
+                loader: "sass-loader"
+            }
+          ]
+        },
+    ]
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({

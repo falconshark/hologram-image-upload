@@ -12,6 +12,7 @@ gulp.task('watch', function () {
   gulp.watch('./src/css/*.css', ['build:css']);
 });
 
+/*
 gulp.task('build:scss', function() {
   return gulp.src('./src/css/Hologram.scss')
   .pipe(sass().on('error', sass.logError))
@@ -23,6 +24,7 @@ gulp.task('build:css', function(){
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('./dist/css/'))
 });
+*/
 
 gulp.task('build:js', function () {
   // run webpack
@@ -37,8 +39,6 @@ gulp.task('build:js', function () {
 });
 
 gulp.task('build', [
-  'build:scss',
-  'build:css',
   'build:js']
 );
 

@@ -10,6 +10,7 @@ import Dropzone from 'react-dropzone';
 import PropTypes from 'prop-types';
 import ModalCom from './Modal';
 import LoadModalCom from './LoadModal';
+import '../css/Hologram.scss';
 
 const disableClick = true;
 
