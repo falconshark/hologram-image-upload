@@ -2,7 +2,7 @@
 
 React image uploader with dropzone and cropper function, which used [React Dropzone](https://github.com/okonet/react-dropzone) and [React Image Crop](https://github.com/DominicTobias/react-image-crop).
 
-This project still under active development, please feel free to open issues or pull request.
+You can please feel free to open issues or pull request.
 
 [![npm]( 	http://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/hologram-image-upload)
 
