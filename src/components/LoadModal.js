@@ -5,7 +5,7 @@ jsx-a11y/no-noninteractive-element-interactions: 'off'
 */
 
 import React from 'react';
-import Modal from 'react-responsive-modal';
+import Modal from 'react-bootstrap-modal';
 import PropTypes from 'prop-types';
 
 class LoadModalCom extends React.Component {
@@ -21,7 +21,6 @@ class LoadModalCom extends React.Component {
     super(props);
     this.onCloseModal = this.onCloseModal.bind(this);
     this.state = {
-      modalLittle: true,
       open: false,
     };
   }
@@ -41,16 +40,12 @@ class LoadModalCom extends React.Component {
   render() {
     return (
       <div className="loading-screen">
-        <Modal
-          little={this.state.modalLittle}
-          modalClassName="loading-modal"
-          open={this.state.open}
-          showCloseIcon={false}
-          onClose={() => this.onCloseModal()}
-        >
-          <div className="message">
-            <p>Images uploading, please wait.....</p>
-          </div>
+        <Modal show={this.state.open} onHide={() => this.onCloseModal()} aria-labelledby="message">
+          <Modal.Body id="message">
+            <div>
+              Images uploading, please wait.....
+            </div>
+          </Modal.Body>
         </Modal>
       </div>
     );

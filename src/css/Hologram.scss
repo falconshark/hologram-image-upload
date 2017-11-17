@@ -1,4 +1,5 @@
-@import "../../node_modules/react-image-crop/dist/ReactCrop.css";
+@import "~react-image-crop/dist/ReactCrop.css";
+@import "~react-bootstrap-modal/lib/css/rbm-complete.css";
 
 .hologram-btn{
   display: block;
@@ -21,14 +22,21 @@
   }
 }
 
-.message{
+#message{
   font-size: 24px;
   text-align: center;
+
+  .loading-icon{
+    margin-left: auto;
+    margin-right: auto;
+
+    img{
+      display: block;
+      max-width: 100%;
+    }
+  }
 }
-.loading-icon{
-  margin-left: auto;
-  margin-right: auto;
-}
+
 
 .dropzone{
   margin-left: auto;

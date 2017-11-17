@@ -27,13 +27,8 @@ npm install hologram-image-upload --save
 ```js
 import Hologram from 'hologram-image-upload';
 ```
-then require dist/Hologram.css:
 
- ```html
-<link rel=stylesheet type="text/css" href="dist/css/Hologram.css">
- ```
-
-After version 2.0, you will not need require css file of react crop and bootstrap anymore.
+After version 2.5, you will not need require any css file now.
 
 ## Props
 

@@ -5,7 +5,7 @@ jsx-a11y/no-noninteractive-element-interactions: 'off'
 */
 
 import React from 'react';
-import Modal from 'react-responsive-modal';
+import Modal from 'react-bootstrap-modal';
 import PropTypes from 'prop-types';
 import CropperCom from './Cropper';
 
@@ -54,14 +54,19 @@ class ModalCom extends React.Component {
           <div className="remove-text">✖</div>
         </div>
         <img alt="file preview" src={this.props.file.preview} onClick={this.onOpenModal} />
-        <Modal little={this.state.modalLittle} modalClassName="hologram-modal" open={this.state.open} onClose={() => this.onCloseModal()}>
-          <CropperCom
-            config={this.props.cropperConfig}
-            src={this.props.file.origin}
-            file={this.props.file}
-            onUpdate={this.props.cropperUpdate}
-            closeModal={this.onCloseModal}
-          />
+        <Modal show={this.state.open} onHide={() => this.onCloseModal()} aria-labelledby="ModalHeader">
+          <Modal.Header closeButton>
+            <Modal.Title id="ModalHeader">Crop your images here.</Modal.Title>
+          </Modal.Header>
+          <Modal.Body id="cropper">
+            <CropperCom
+              config={this.props.cropperConfig}
+              src={this.props.file.origin}
+              file={this.props.file}
+              onUpdate={this.props.cropperUpdate}
+              closeModal={this.onCloseModal}
+            />
+          </Modal.Body>
         </Modal>
       </div>
     );
