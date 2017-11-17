@@ -28,6 +28,7 @@ class CropperCom extends React.Component {
     super(props);
     this.onImageLoaded = this.onImageLoaded.bind(this);
     this.onComplete = this.onComplete.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.crop = this.crop.bind(this);
     this.state = {
       crop: this.props.config.crop,
@@ -35,16 +36,20 @@ class CropperCom extends React.Component {
     };
   }
 
-  onImageLoaded(crop, image) {
+  onImageLoaded(image) {
     this.setState({ originImage: image });
+  }
+
+  onChange(crop) {
+    this.setState({ crop });
   }
 
   onComplete(crop) {
     const component = this;
     const originImage = this.state.originImage;
-    this.setState({ crop });
     const imageWidth = originImage.naturalWidth;
     const imageHeight = originImage.naturalHeight;
+    this.setState({ crop });
 
     // Use canvas to create a cropped version of image
 
@@ -82,6 +87,7 @@ class CropperCom extends React.Component {
         <ReactCrop
           {...this.props.config}
           crop={this.state.crop}
+          onChange={this.onChange}
           onImageLoaded={this.onImageLoaded}
           onComplete={this.onComplete}
           src={this.props.src}
