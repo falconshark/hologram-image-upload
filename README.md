@@ -14,7 +14,9 @@ https://hologram.sardo.work/
 - Crop and preview image  
 
 ## Browser Support
-- All browsers which support canvas function. (IE 11 Will not be supported)
+- Latest Firefox
+- Latest Chrome
+- IE 11 and Edge
 
 ## Installation
 ```bash
