@@ -7,7 +7,6 @@ jsx-a11y/no-noninteractive-element-interactions: 'off'
 import React from 'react';
 import Modal from 'react-responsive-modal';
 import PropTypes from 'prop-types';
-import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import CropperCom from './Cropper';
 
 class ModalCom extends React.Component {
@@ -51,8 +50,10 @@ class ModalCom extends React.Component {
   render() {
     return (
       <div className="dropzone-image">
+        <div tabIndex="0" role="button" className="remove-icon" onClick={() => this.handleClick()} >
+          <div className="remove-text">✖</div>
+        </div>
         <img alt="file preview" src={this.props.file.preview} onClick={this.onOpenModal} />
-        <FaTimesCircle className="remove-icon" onClick={() => this.handleClick()} />
         <Modal little={this.state.modalLittle} modalClassName="hologram-modal" open={this.state.open} onClose={() => this.onCloseModal()}>
           <CropperCom
             config={this.props.cropperConfig}
