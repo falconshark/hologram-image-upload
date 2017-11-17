@@ -13,6 +13,9 @@ https://hologram.sardo.work/
 - Using dropzone to upload multiple image files
 - Crop and preview image  
 
+## Browser Support
+- All browsers which support canvas function. (IE 11 Will not be supported)
+
 ## Installation
 ```bash
 npm install hologram-image-upload --save
