@@ -6,7 +6,6 @@ jsx-a11y/no-noninteractive-element-interactions: 'off'
 
 import React from 'react';
 import Modal from 'react-responsive-modal';
-import ReactLoading from 'react-loading';
 import PropTypes from 'prop-types';
 
 class LoadModalCom extends React.Component {
@@ -50,7 +49,6 @@ class LoadModalCom extends React.Component {
           onClose={() => this.onCloseModal()}
         >
           <div className="message">
-            <ReactLoading type={'spin'} color={'#000000'} delay={10} className={'loading-icon'} />
             <p>Images uploading, please wait.....</p>
           </div>
         </Modal>

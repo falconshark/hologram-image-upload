@@ -2,6 +2,7 @@
 react/forbid-prop-types: 'warn',
 no-restricted-syntax: 'warn'
 */
+import 'babel-polyfill';
 import React from 'react';
 import request from 'superagent';
 import Dropzone from 'react-dropzone';

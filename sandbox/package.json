@@ -2,5 +2,8 @@
   "scripts": {
     "build": "../node_modules/.bin/gulp",
     "watch": "../node_modules/.bin/gulp watch"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
   }
 }
