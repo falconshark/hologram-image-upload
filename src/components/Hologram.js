@@ -22,10 +22,12 @@ function convert(file) {
     image.src = file.preview;
     image.crossOrigin = 'anonymous';
     image.onload = function () {
+      // Get image information
       canvas.width = image.width;
       canvas.height = image.height;
       canvasContext.drawImage(image, 0, 0, image.width, image.height);
 
+      // Use canvas to get the dataUrl of image
       const dataUrl = canvas.toDataURL(file.type);
 
       const newFile = {

@@ -26,6 +26,7 @@ class LoadModalCom extends React.Component {
   }
 
   componentWillReceiveProps(prevProps) {
+    // Hologram is uploading, show message to user
     if (prevProps.uploading === true) {
       this.setState({ open: true });
     } else {
@@ -42,6 +43,7 @@ class LoadModalCom extends React.Component {
       <div className="loading-screen">
         <Modal show={this.state.open} onHide={() => this.onCloseModal()} aria-labelledby="message">
           <Modal.Body id="message">
+            <div className="loader" />
             <div>
               Images uploading, please wait.....
             </div>
