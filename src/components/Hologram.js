@@ -198,7 +198,7 @@ class Hologram extends React.Component {
             onDrop={this.onDrop}
             disableClick={disableClick}
           >
-            <div>Drop images here to upload them.</div>
+            <div>Drop images into the dropzone and click &quot;upload&quot; button to upload.</div>
             {this.state.files.length > 0 ?
               <div className="image-wrapper">
                 { this.state.files.length < this.props.maxFiles || this.props.maxFiles === -1 ?
