@@ -202,20 +202,23 @@ class Hologram extends React.Component {
             {this.state.files.length > 0 ?
               <div className="image-wrapper">
                 { this.state.files.length < this.props.maxFiles || this.props.maxFiles === -1 ?
-                  <button className="hologram-btn" type="button" onClick={this.onOpenZone}>Open Dropzone</button>
+                  <button className="hologram-btn" type="button" onClick={this.onOpenZone}>Add Images</button>
                   : null }
-                <button className="hologram-btn" type="button" onClick={this.onUpload}>Upload</button>
                 <p className="help">Click Image to crop it.</p>
-                {this.state.files.map(file => (
-                  <ModalCom
-                    key={file.key}
-                    file={file}
-                    removeFile={this.removeFile}
-                    cropperConfig={this.props.cropperConfig}
-                    cropperUpdate={this.onUpdate}
-                  />
-                  ))}
-              </div> : <button className="hologram-btn" type="button" onClick={this.onOpenClick}>Open Dropzone</button>
+                <div className="images">
+                  {this.state.files.map(file => (
+                    <ModalCom
+                      key={file.key}
+                      file={file}
+                      removeFile={this.removeFile}
+                      cropperConfig={this.props.cropperConfig}
+                      cropperUpdate={this.onUpdate}
+                    />
+                    ))}
+                </div>
+                <div className="button-wrapper"><button className="hologram-btn" type="button" onClick={this.onUpload}>Upload</button></div>
+              </div>
+               : <button className="hologram-btn" type="button" onClick={this.onOpenClick}>Add Images</button>
               }
           </Dropzone>
         </div>

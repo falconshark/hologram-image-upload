@@ -84,19 +84,31 @@
   }
 
   .image-wrapper{
-    margin-left: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .images{
+    display: flex;
+    flex-wrap: wrap;
+    border-style: dashed dashed dashed dashed;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    display: inline-flex;
   }
 
   .dropzone-image{
     position: relative;
     width: 200px;
     height: 200px;
-    margin-right: 2em;
+    margin-left: 1em;
     display: inline-block;
     border-style: dashed dashed dashed dashed;
     overflow: hidden;
     background-color: #fff;
     border-radius: 10px;
+    margin-bottom: 1em;
 
     .remove-icon{
       position: absolute;
