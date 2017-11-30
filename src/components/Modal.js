@@ -51,13 +51,7 @@ class ModalCom extends React.Component {
   }
 
   handleMouseHover() {
-    this.setState(this.toggleHoverState);
-  }
-
-  toggleHoverState(state) {
-    return {
-      isHover: !state.isHover,
-    };
+    this.setState({ isHover: !this.state.isHover });
   }
 
   render() {
