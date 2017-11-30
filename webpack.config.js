@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/components/Hologram.js',
@@ -11,35 +11,42 @@ module.exports = {
   },
   externals: {
     'react': 'react',
-    'react-dom':'react-dom',
+    'react-dom': 'react-dom',
     'object-assign': 'object-assign',
   },
   module: {
-      rules: [
-        {
-          test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader',
-        },
-        {
-          test: /\.scss$/,
-          exclude: /node_modules/,
-          use: [
-            {
-                loader: "style-loader"
-            }, {
-                loader: "css-loader"
-            }, {
-                loader: "sass-loader"
-            }
-          ]
-        },
-    ]
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpg)$/,
+        exclude: /node_modules/,
+        loader: 'url-loader',
+      },
+    ],
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    })
+      compress: { warnings: false },
+    }),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],

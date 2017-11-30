@@ -8,6 +8,7 @@ import React from 'react';
 import Modal from 'react-bootstrap-modal';
 import PropTypes from 'prop-types';
 import CropperCom from './Cropper';
+import CropperIcon from '../images/crop.png';
 
 class ModalCom extends React.Component {
   static propTypes = {
@@ -29,9 +30,11 @@ class ModalCom extends React.Component {
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleMouseHover = this.handleMouseHover.bind(this);
     this.state = {
       modalLittle: true,
       open: false,
+      isHover: false,
     };
   }
 
@@ -47,13 +50,35 @@ class ModalCom extends React.Component {
     this.props.removeFile(this.props.file);
   }
 
+  handleMouseHover() {
+    this.setState(this.toggleHoverState);
+  }
+
+  toggleHoverState(state) {
+    return {
+      isHover: !state.isHover,
+    };
+  }
+
   render() {
     return (
       <div className="dropzone-image">
-        <div tabIndex="0" role="button" className="remove-icon" onClick={() => this.handleClick()} >
+        <div tabIndex="-1" role="button" className="remove-icon" onClick={() => this.handleClick()} >
           <div className="remove-text">✖</div>
         </div>
-        <img alt="file preview" src={this.props.file.preview} onClick={this.onOpenModal} />
+        <div
+          tabIndex="0"
+          role="button"
+          className="image-wrapper"
+          onClick={this.onOpenModal}
+          onMouseEnter={this.handleMouseHover}
+          onMouseLeave={this.handleMouseHover}
+        >
+          {this.state.isHover ?
+            <img alt="crop" className="cropper-icon" src={CropperIcon} />
+            : null }
+          <img alt="file preview" className="preview" src={this.props.file.preview} />
+        </div>
         <Modal show={this.state.open} onHide={() => this.onCloseModal()} aria-labelledby="ModalHeader">
           <Modal.Header closeButton>
             <Modal.Title id="ModalHeader">Crop your images here.</Modal.Title>

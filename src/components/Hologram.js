@@ -200,11 +200,11 @@ class Hologram extends React.Component {
           >
             <div>Drop images into the dropzone and click &quot;upload&quot; button to upload.</div>
             {this.state.files.length > 0 ?
-              <div className="image-wrapper">
+              <div className="images-area">
                 { this.state.files.length < this.props.maxFiles || this.props.maxFiles === -1 ?
                   <button className="hologram-btn" type="button" onClick={this.onOpenZone}>Add Images</button>
                   : null }
-                <p className="help">Click Image to crop it.</p>
+                <div className="clearfix" />
                 <div className="images">
                   {this.state.files.map(file => (
                     <ModalCom

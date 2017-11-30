@@ -1,34 +1,41 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
-    entry: './app/index.js',
-    output: {
-        path: path.join(__dirname, 'public/js/'),
-        filename: 'Hologram.js',
-    },
-    module: {
-        rules: [
+  entry: './app/index.js',
+  output: {
+    path: path.join(__dirname, 'public/js/'),
+    filename: 'Hologram.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
           {
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader',
+            loader: 'style-loader',
           },
           {
-            test: /\.scss$/,
-            exclude: /node_modules/,
-            use: [
-              {
-                  loader: "style-loader" // 将 JS 字符串生成为 style 节点
-              }, {
-                  loader: "css-loader" // 将 CSS 转化成 CommonJS 模块
-              }, {
-                  loader: "sass-loader" // 将 Sass 编译成 CSS
-              }
-            ]
+            loader: 'css-loader',
           },
-      ]
-    },
-    resolve: {
-        extensions: ['.js', '.jsx']
-    },
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpg)$/,
+        exclude: /node_modules/,
+        loader: 'url-loader',
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };
