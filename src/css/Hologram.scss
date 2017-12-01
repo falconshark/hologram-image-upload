@@ -3,6 +3,10 @@
 
 /** Common Element **/
 
+.text-center{
+  text-align: center;
+}
+
 .hologram-btn{
   display: block;
   margin-top: 1em;
@@ -90,9 +94,10 @@
   .images{
     display: inline-flex;
     flex-wrap: wrap;
-    border-style: dashed dashed dashed dashed;
+    border: 3px dashed #fff;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 1em;
     padding: 1em;
   }
 
@@ -102,7 +107,7 @@
     height: 200px;
     margin-left: 1em;
     display: inline-block;
-    border-style: dashed dashed dashed dashed;
+    border: 3px dashed #fff;
     overflow: hidden;
     background-color: #fff;
     border-radius: 10px;
