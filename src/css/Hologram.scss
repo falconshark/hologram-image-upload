@@ -123,6 +123,9 @@
       transition: all .3s;
       border: 2px solid;
       z-index: 999;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
 
       &:hover{
         color: black;
