@@ -45,6 +45,8 @@
     "react-bootstrap-modal": "^4.0.0",
     "react-dropzone": "^4.2.2",
     "react-image-crop": "^3.0.8",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
     "superagent": "3.4.1"
   },
   "peerDependencies": {
