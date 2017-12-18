@@ -4417,9 +4417,9 @@ react-dropzone@^4.2.2:
     attr-accept "^1.0.3"
     prop-types "^15.5.7"
 
-react-image-crop@^3.0.7:
-  version "3.0.7"
-  resolved "https://registry.yarnpkg.com/react-image-crop/-/react-image-crop-3.0.7.tgz#8f7f1f03031c76c8b6306d11f7d1b8bf3007ab8c"
+react-image-crop@^3.0.8:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/react-image-crop/-/react-image-crop-3.0.8.tgz#0b73a8bd3b1376011ca1f94a52e39d14a5e7d4e4"
 
 react-overlays@^0.7.3:
   version "0.7.4"
