@@ -43,7 +43,6 @@ function convert(file) {
 
 class Dropzone extends React.Component {
   static propTypes = {
-    cropperConfig: PropTypes.object,
     dropzoneConfig: PropTypes.object,
     maxFiles: PropTypes.number,
     uploader: PropTypes.string,
