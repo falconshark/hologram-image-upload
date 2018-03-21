@@ -1,6 +1,10 @@
 {
   "name": "hologram-image-upload",
+<<<<<<< HEAD
   "version": "2.6.3",
+=======
+  "version": "2.7.0",
+>>>>>>> Improve UI design to make it more easy to use
   "author": "Mr.Twister<sardo.ip@sardo.work>",
   "license": "MIT",
   "description": "React image uploader with dropzone and cropper function",

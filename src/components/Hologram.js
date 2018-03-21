@@ -10,6 +10,7 @@ import Dropzone from 'react-dropzone';
 import PropTypes from 'prop-types';
 import ModalCom from './Modal';
 import LoadModalCom from './LoadModal';
+import DropIcon from '../images/drop.png';
 import '../css/Hologram.scss';
 
 const disableClick = true;
@@ -206,21 +207,27 @@ class Hologram extends React.Component {
                       Select a photo from our computer
                     </button>
                     <div>
-                      OR
+                      <p>OR</p>
                     </div>
                   </div>
                   : null }
                 <div className="clearfix" />
-                <div className="images">
-                  {this.state.files.map(file => (
-                    <ModalCom
-                      key={file.key}
-                      file={file}
-                      removeFile={this.removeFile}
-                      cropperConfig={this.props.cropperConfig}
-                      cropperUpdate={this.onUpdate}
-                    />
-                    ))}
+                <div className="images-list">
+                  <div className="images">
+                    {this.state.files.map(file => (
+                      <ModalCom
+                        key={file.key}
+                        file={file}
+                        removeFile={this.removeFile}
+                        cropperConfig={this.props.cropperConfig}
+                        cropperUpdate={this.onUpdate}
+                      />
+                      ))}
+                  </div>
+                  <div className="dropzone-tips">
+                    Drop photo heres
+                    <img className="dropfile-icon" alt="Drop photos"src={DropIcon} />
+                  </div>
                 </div>
                 <div className="upload-button-wrapper">
                   <button className="hologram-btn upload-btn" type="button" onClick={this.onUpload}>
@@ -228,12 +235,16 @@ class Hologram extends React.Component {
                   </button>
                 </div>
               </div>
-               : <div>
+               : <div className="images-area">
                  <button className="hologram-btn" type="button" onClick={this.onOpenClick}>
                     Select a photo from our computer
                  </button>
                  <div>
-                   OR
+                   <p>OR</p>
+                   <div className="dropzone-tips">
+                     Drop photo heres
+                     <img className="dropfile-icon" alt="Drop photos"src={DropIcon} />
+                   </div>
                  </div>
                </div>
               }

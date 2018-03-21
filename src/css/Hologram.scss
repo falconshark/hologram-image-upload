@@ -90,21 +90,60 @@
   .hologram-btn{
     display: inline-block;
     margin-right: 1em;
+
+    @media screen and (max-width: 768px){
+      margin-right: auto;
+    }
   }
 
   .upload-button-wrapper{
     text-align: right;
     margin-right: 80px;
+
+    @media screen and (max-width: 768px){
+      text-align: center;
+      margin-right: auto;
+    }
   }
 
-  .images{
-    display: flex;
-    flex-wrap: wrap;
+  .images-area{
+    p{
+      @media screen and (max-width: 768px){
+        display: none;
+      }
+    }
+  }
+
+  .images-list{
     border: 3px dashed #fff;
     margin-left: 100px;
     margin-right: 100px;
     margin-top: 1em;
     padding: 1em;
+
+    @media screen and (max-width: 768px){
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+  }
+  .images{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .dropzone-tips{
+    margin-top: 1.5em;
+    font-size: 1.5em;
+    font-weight: bold;
+    color:#717171;
+
+    @media screen and (max-width: 768px){
+      display: none;
+    }
+
+    .dropfile-icon{
+      margin-left: 1em;
+    }
   }
 
   .dropzone-image{
