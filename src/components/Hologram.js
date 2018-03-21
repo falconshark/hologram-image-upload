@@ -224,10 +224,12 @@ class Hologram extends React.Component {
                       />
                       ))}
                   </div>
-                  <div className="dropzone-tips">
-                    Drop photo heres
-                    <img className="dropfile-icon" alt="Drop photos"src={DropIcon} />
-                  </div>
+                  { this.state.files.length < this.props.maxFiles || this.props.maxFiles === -1 ?
+                    <div className="dropzone-tips">
+                      Drop photo heres
+                      <img className="dropfile-icon" alt="Drop photos"src={DropIcon} />
+                    </div>
+                    : null }
                 </div>
                 <div className="upload-button-wrapper">
                   <button className="hologram-btn upload-btn" type="button" onClick={this.onUpload}>
