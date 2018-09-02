@@ -32,6 +32,13 @@ After version 2.5, you will not need require any css file now.
 
 ## Props
 
+#### defaultFiles (optional)
+Mockup images of dropzone. You could pass the name, url, and type of file, then it will be add to dropzone when Hologram mounted.
+
+```jsx
+<Hologram defaultFiles={[{name: 'dummy.jpg', url: 'https://s3-ap-southeast-1.amazonaws.com/dummy/dummy.jpg', type: 'image/jpeg'}]}/>
+```
+
 #### uploader (optional)
 The post url of your upload handler. You need to pass this prop or a custom upload function for everything to work.
 

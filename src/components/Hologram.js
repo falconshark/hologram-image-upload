@@ -15,7 +15,8 @@ import '../css/Hologram.scss';
 
 const disableClick = true;
 
-function convert(file) {
+// Convert Blob to Data Url
+function convertBlobToUrl(file) {
   return new Promise((resolve) => {
     const image = new Image();
     const canvas = document.createElement('canvas');
@@ -43,8 +44,38 @@ function convert(file) {
   });
 }
 
+// Convert Image Url to Blob
+function convertUrlToBlob(file) {
+  return new Promise((resolve) => {
+    const image = new Image();
+    const canvas = document.createElement('canvas');
+    const canvasContext = canvas.getContext('2d');
+    image.src = file.url;
+    image.crossOrigin = 'anonymous';
+    image.onload = function () {
+      // Get image information
+      canvas.width = image.width;
+      canvas.height = image.height;
+      canvasContext.drawImage(image, 0, 0, image.width, image.height);
+      canvas.toBlob((blob) => {
+        const imagePreview = URL.createObjectURL(blob);
+        const imagefile = {
+          name: file.name,
+          size: image.filesize,
+          key: Math.random().toString(36).substring(1),
+          preview: imagePreview,
+          origin: imagePreview,
+          type: file.type,
+        };
+        resolve(imagefile);
+      }, file.type);
+    };
+  });
+}
+
 class Hologram extends React.Component {
   static propTypes = {
+    defaultFiles: PropTypes.array,
     cropperConfig: PropTypes.object,
     dropzoneConfig: PropTypes.object,
     maxFiles: PropTypes.number,
@@ -54,6 +85,7 @@ class Hologram extends React.Component {
   };
 
   static defaultProps = {
+    defaultFiles: {},
     onComplete: () => {},
     uploadFunction: null,
     maxFiles: -1,
@@ -84,7 +116,23 @@ class Hologram extends React.Component {
     this.onUpdate = this.onUpdate.bind(this);
     this.onOpenClick = this.onOpenClick.bind(this);
   }
-
+  componentDidMount() {
+    // Load default files
+    const defaultFiles = this.props.defaultFiles;
+    if (defaultFiles.length !== 0) {
+      const funList = [];
+      for (const defaultFile of defaultFiles) {
+        funList.push(convertUrlToBlob(defaultFile));
+      }
+      Promise.all(funList)
+      .then((files) => {
+        this.setState({ files });
+      })
+      .catch((err) => {
+        console.log('There are some error!', err);
+      });
+    }
+  }
   onOpenClick() {
     this.dropzone.open();
   }
@@ -158,7 +206,7 @@ class Hologram extends React.Component {
   upload(file) {
     const uploader = this.props.uploader;
     return new Promise((resolve, reject) => {
-      convert(file)
+      convertBlobToUrl(file)
       .then((newFile) => {
         const data = JSON.stringify(newFile);
         request.post(uploader).send(data).end((err, res) => {
@@ -175,7 +223,7 @@ class Hologram extends React.Component {
   customUpload(file) {
     const uploaderFunc = this.props.uploadFunction;
     return new Promise((resolve, reject) => {
-      convert(file)
+      convertBlobToUrl(file)
       .then((newFile) => {
         uploaderFunc(file, newFile)
           .then((res) => {
