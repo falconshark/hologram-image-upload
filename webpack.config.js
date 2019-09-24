@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: './src/components/Hologram.js',
@@ -10,7 +11,7 @@ module.exports = {
     filename: 'Hologram.js',
   },
   externals: {
-    'react': 'react',
+    react: 'react',
     'react-dom': 'react-dom',
     'object-assign': 'object-assign',
   },
@@ -24,17 +25,10 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ],
+
+        use: ExtractTextWebpackPlugin.extract({
+          use: ['css-loader', 'sass-loader'],
+        }),
       },
       {
         test: /\.(png|jpg)$/,
@@ -47,6 +41,7 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
     }),
+    new ExtractTextWebpackPlugin('styles.css'),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
